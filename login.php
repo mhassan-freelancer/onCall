@@ -108,8 +108,6 @@ include 'header.php';
             if(data.message == "success")
             {
               window.location.href = "index.php";
-
-
             }
             else {
               alert(data.message);
