@@ -3,3 +3,4 @@
 <li><a href="parameters.php"><i class="fa fa-circle-o text-yellow"></i> <span>Parameter</span></a></li>
 <li><a href="config.php"><i class="fa fa-circle-o text-yellow"></i> <span>Config</span></a></li>
 <li><a href="events.php"><i class="fa fa-circle-o text-yellow"></i> <span>Events</span></a></li>
+<li><a href="account_settings.php"><i class="fa fa-circle-o text-yellow"></i> <span>Settings</span></a></li>

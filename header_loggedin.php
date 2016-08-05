@@ -49,8 +49,20 @@
 
 
 
+<<<<<<< HEAD
                     <li class="dropdown user user-menu" >
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+=======
+                    <li >
+                        <a href="#" class="" data-toggle="dropdown">
+
+                        </a>
+                    </li>
+
+
+                    <li class="dropdown user user-menu">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+>>>>>>> origin/master
                             <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <span class="hidden-xs"><?php echo $_SESSION['on_call_u_username'] ?></span>
                         </a>

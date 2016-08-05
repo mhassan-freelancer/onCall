@@ -1,3 +1,7 @@
+Time : 14:48:01
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ': password where email = ? and id = ?' at line 1
+Raw SQL : UPDATE user Set first_name = :first_name, last_name = :last_name, password = : password where email = :email and id = :userId
+
 Time : 11:51:42
 SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
 Raw SQL : select * from user where id = :1
