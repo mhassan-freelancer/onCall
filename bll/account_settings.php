@@ -47,7 +47,7 @@ if(!$passwordValidator->validate($newPassword) && $newPassword != null)
     $error = true;
     array_push($errorArray, "Please enter new password.");
 }
-if(($newPassword != null) && (!$passwordValidator->validate($confirmPassword) || $confirmPassword == null)) {
+if(($newPassword != null) && (!$passwordValidator->validate($confirmPassword))) {
     $error = true;
     array_push($errorArray, "Please enter confirm password.");
 }
@@ -68,6 +68,7 @@ else
 {
     $db->bind("userId", $userId);
     $userObj = $db->row("select * from user where id = :userId");
+
     $isvaliduser = PasswordStorage::verify_password($curPassword, $userObj['password']);
 
     if(!$isvaliduser)
@@ -77,15 +78,22 @@ else
         exit();
     }
 
-    $db->bind("userId", $userId);
-    $db->bind("email", $email);
+    $db->bind("userId", $userObj['id']);
+
     if(empty($newPassword) || $newPassword == null)
-        $db->bind("password", PasswordStorage::create_hash($curPassword));
+    {}
     else
+    {
         $db->bind("password", PasswordStorage::create_hash($newPassword));
-    $db->bind("first_name", $firstname);
-    $db->bind("last_name", $lastname);
-    $userObj = $db->row("UPDATE user Set first_name = :first_name, last_name = :last_name, password = :password where email = :email and id = :userId");
+
+
+        $db->bind("first_name", $firstname);
+        $db->bind("last_name", $lastname);
+
+
+        $db->query("UPDATE user set first_name = :first_name, last_name = :last_name, password = :password where id = :userId");
+        
+    }
 
     header('location:'.BASE_URL.'logout.php');
 }
