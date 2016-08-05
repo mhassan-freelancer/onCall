@@ -78,12 +78,25 @@ else
         exit();
     }
 
-    $db->bind("userId", $userObj['id']);
+
 
     if(empty($newPassword) || $newPassword == null)
-    {}
+    {
+
+        $db->bind("userId", $userObj['id']);
+
+
+        $db->bind("first_name", $firstname);
+        $db->bind("last_name", $lastname);
+
+
+        $db->query("UPDATE user set first_name = :first_name, last_name = :last_name where id = :userId");
+
+
+    }
     else
     {
+        $db->bind("userId", $userObj['id']);
         $db->bind("password", PasswordStorage::create_hash($newPassword));
 
 
@@ -92,10 +105,10 @@ else
 
 
         $db->query("UPDATE user set first_name = :first_name, last_name = :last_name, password = :password where id = :userId");
-        
+
     }
 
-    header('location:'.BASE_URL.'logout.php');
+    header('location:'.BASE_URL.'index.php');
 }
 
 ?>
