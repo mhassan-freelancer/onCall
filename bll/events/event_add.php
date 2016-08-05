@@ -2,6 +2,7 @@
 require("../../includes/Db.class.php");
 require  '../../vendor/autoload.php';
 require '../../includes/PasswordStorage.php';
+require ('../../includes/config.php');
 
 $db = new DB();
 use Respect\Validation\Validator as v;
@@ -20,7 +21,7 @@ if(empty($event) || $event == null) {
 if($error)
 {
     $_SESSION['error'] = $errorArray;
-    header('location:/onCall/event_add.php');
+    header('location:'.BASE_URL.'event_add.php');
 }
 else{
     $db->bind("text",$event);
@@ -31,12 +32,12 @@ else{
         $db->bind("text",$event);
         $db->query("Insert into events (text) VALUES (:text)");
         $_SESSION['success'] = "Event Added Successfully";
-        header('location:/onCall/event_add.php');
+        header('location:'.BASE_URL.'event_add.php');
     }
     else
     {
         $_SESSION['error'] = "Event Already Exists";
-        header('location:/onCall/events.php');
+        header('location:'.BASE_URL.'events.php');
     }
 }
 ?>

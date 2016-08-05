@@ -3,6 +3,7 @@ require("../includes/Db.class.php");
 require  '../vendor/autoload.php';
 
 require '../includes/PasswordStorage.php';
+require ('../includes/config.php');
 
 $db = new DB();
 use Respect\Validation\Validator as v;
@@ -79,7 +80,7 @@ if(!$alphaInput->validate($label))
 if($error)
 {
     $_SESSION['error'] = $errorArray;
-    header('location:/onCall/parameter_add.php');
+    header('location:'.BASE_URL.'parameter_add.php');
 }
 else{
     $db->bind("parameter",$parameter);
@@ -94,12 +95,12 @@ else{
         $db->bind("allowDecimal", $allowDecimal);
         $db->query("Insert into parameters (parameter, label, data_type, data_type_values, allow_decimal) VALUES (UCASE(:parameter), :label, :dataType, :type_Val, :allowDecimal)");
         $_SESSION['success'] = "Parameter Added Successfully";
-        header('location:/onCall/parameter_add.php');
+        header('location:'.BASE_URL.'parameter_add.php');
     }
     else
     {
         $_SESSION['error'] = "Parameter Already Exists";
-        header('location:/onCall/parameter_add.php');
+        header('location:'.BASE_URL.'parameter_add.php');
     }
 }
 ?>

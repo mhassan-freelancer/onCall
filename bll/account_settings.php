@@ -1,8 +1,8 @@
 <?php session_start();
 require("../includes/Db.class.php");
 require  '../vendor/autoload.php';
-
 require '../includes/PasswordStorage.php';
+require ('../includes/config.php');
 
 $db = new DB();
 use Respect\Validation\Validator as v;
@@ -62,7 +62,7 @@ if(($newPassword != null) && ($confirmPassword != null)) {
 if($error)
 {
     $_SESSION['error'] = $errorArray;
-    header('location:/onCall/account_settings.php');
+    header('location:'.BASE_URL.'account_settings.php');
 }
 else
 {
@@ -73,7 +73,7 @@ else
     if(!$isvaliduser)
     {
         $_SESSION['error'] = "Username or password is incorrect. ";
-        header('location:/onCall/account_settings.php');
+        header('location:'.BASE_URL.'account_settings.php');
         exit();
     }
 
@@ -87,8 +87,7 @@ else
     $db->bind("last_name", $lastname);
     $userObj = $db->row("UPDATE user Set first_name = :first_name, last_name = :last_name, password = :password where email = :email and id = :userId");
 
-    $_SESSION = null;
-    header('location:/onCall/login.php');
+    header('location:'.BASE_URL.'logout.php');
 }
 
 ?>

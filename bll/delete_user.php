@@ -1,8 +1,8 @@
 <?php session_start();
 require("../includes/Db.class.php");
 require  '../vendor/autoload.php';
-
 require '../includes/PasswordStorage.php';
+require ('../includes/config.php');
 
 $db = new DB();
 use Respect\Validation\Validator as v;
@@ -20,7 +20,7 @@ if($userObj != null)
     $db->query("UPDATE user SET enabled = 0 WHERE id = :userId ");
 
     $_SESSION['success'] = "User ".$userObj['email']." disabled successfully.";
-    header('location:/onCall/system_users.php');
+    header('location:'.BASE_URL.'system_users.php');
     exit();
 }
 

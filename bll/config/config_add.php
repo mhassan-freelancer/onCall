@@ -3,6 +3,7 @@ require("../../includes/Db.class.php");
 require  '../../vendor/autoload.php';
 
 require '../../includes/PasswordStorage.php';
+require ('../../includes/config.php');
 
 $db = new DB();
 use Respect\Validation\Validator as v;
@@ -39,7 +40,7 @@ if(empty($value) || $value == null)
 if($error)
 {
     $_SESSION['error'] = $errorArray;
-    header('location:/onCall/config_add.php');
+    header('location:'.BASE_URL.'config_add.php');
 }
 else{
     $db->bind("moduleId", $moduleId);
@@ -57,7 +58,7 @@ else{
     $db->query("Insert into config (module_id, parameter, value, label) VALUES (:moduleId, UCASE(:parameter), :value, :label)");*/
 
     $_SESSION['success'] = "Config Added Successfully";
-    header('location:/onCall/config_add.php');
+    header('location:'.BASE_URL.'config_add.php');
 
     /*if(ture)
     {
@@ -66,12 +67,12 @@ else{
 
         $db->query("Insert into parameters (parameter, label) VALUES (UCASE(:parameter), :label)");
         $_SESSION['success'] = "Config Added Successfully";
-        header('location:/onCall/config_add.php');
+        header('location:'.BASE_URL.'config_add.php');
     }
     else
     {
         $_SESSION['error'] = "Config Already Exists";
-        header('location:/onCall/config_add.php');
+        header('location:'.BASE_URL.'config_add.php');
     }*/
 }
 ?>

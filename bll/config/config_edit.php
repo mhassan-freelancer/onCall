@@ -3,6 +3,7 @@ require("../../includes/Db.class.php");
 require  '../../vendor/autoload.php';
 
 require '../../includes/PasswordStorage.php';
+require ('../../includes/config.php');
 
 
 $db = new DB();
@@ -42,7 +43,7 @@ if(empty($value) || $value == null)
 if($error)
 {
     $_SESSION['error'] = $errorArray;
-    header('location:/onCall/config_edit.php');
+    header('location:'.BASE_URL.'config_edit.php');
 }
 else{
 
@@ -67,10 +68,10 @@ else{
         $db->query("UPDATE config SET module_id = :moduleId, parameter = UCASE(:parameter), value = :value, label = :label WHERE id = :configId "); */
 
         $_SESSION['success'] = "Config Updated Successfully.";
-        header('location:/onCall/config.php');
+        header('location:'.BASE_URL.'config.php');
     } else {
         $_SESSION['error'] = "Invalid Config Id.";
-        header('location:/onCall/config.php');
+        header('location:'.BASE_URL.'config.php');
     }
 
 }

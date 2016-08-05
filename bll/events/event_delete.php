@@ -1,8 +1,8 @@
 <?php session_start();
 require("../../includes/Db.class.php");
 require  '../../vendor/autoload.php';
-
 require '../../includes/PasswordStorage.php';
+require ('../../includes/config.php');
 
 $db = new DB();
 use Respect\Validation\Validator as v;
@@ -20,7 +20,7 @@ if($parameterObj != null)
     $db->query("DELETE FROM events WHERE id = :eventId ");
 
     $_SESSION['success'] ="Event Deleted Successfully";
-    header('location:/onCall/events.php');
+    header('location:'.BASE_URL.'events.php');
     exit();
 }
 

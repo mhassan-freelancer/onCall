@@ -3,6 +3,7 @@ require("../../includes/Db.class.php");
 require  '../../vendor/autoload.php';
 
 require '../../includes/PasswordStorage.php';
+require ('../../includes/config.php');
 
 $db = new DB();
 use Respect\Validation\Validator as v;
@@ -28,7 +29,7 @@ if($configObj != null)
 //    }
 
     $_SESSION['success'] = "Config Deleted Successfully";
-    header('location:/onCall/config.php');
+    header('location:'.BASE_URL.'config.php');
     exit();
 }
 

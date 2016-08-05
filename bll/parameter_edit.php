@@ -3,6 +3,7 @@ require("../includes/Db.class.php");
 require  '../vendor/autoload.php';
 
 require '../includes/PasswordStorage.php';
+require ('../includes/config.php');
 
 
 $db = new DB();
@@ -70,7 +71,7 @@ if(!empty($dataType) && $dataType != "DROP_DOWN")
 if($error)
 {
     $_SESSION['error'] =$errorArray;
-    header('location:/onCall/parameters.php');
+    header('location:'.BASE_URL.'parameters.php');
 }
 else{
     $db->bind("parameterId", $parameterId);
@@ -98,7 +99,7 @@ else{
         }*/
 
         $_SESSION['success'] = "Parameter Updated Successfully.";
-        header('location:/onCall/parameters.php');
+        header('location:'.BASE_URL.'parameters.php');
     }
     
 }

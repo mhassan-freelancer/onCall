@@ -1,7 +1,6 @@
 <?php session_start();
 require("../includes/Db.class.php");
 require  '../vendor/autoload.php';
-
 require '../includes/PasswordStorage.php';
 
 
@@ -65,7 +64,7 @@ if(!$alphanumeric->validate($username))
 if($error)
 {
     $_SESSION['error'] =$errorArray;
-    header('location:/edit_user.php');
+    header('location:'.BASE_URL.'edit_user.php');
 }
 else{
     $db->bind("email",$email);
@@ -89,7 +88,7 @@ else{
         $db->query("Insert into user (first_name,last_name,email,username,password,enabled,admin,alarm)VALUES (
                                   :firstname,:lastname,:email,:username,:password,1,:isadmin,:alarm)");
         $_SESSION['success'] ="User Added Successfully";
-        header('location:/add_user.php');
+        header('location:'.BASE_URL.'add_user.php');
     }
     
 }

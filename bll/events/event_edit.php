@@ -2,6 +2,7 @@
 require("../../includes/Db.class.php");
 require  '../../vendor/autoload.php';
 require '../../includes/PasswordStorage.php';
+require ('../../includes/config.php');
 
 $db = new DB();
 use Respect\Validation\Validator as v;
@@ -27,7 +28,7 @@ if(empty($text) || $text == null) {
 if($error)
 {
     $_SESSION['error'] =$errorArray;
-    header('location:/onCall/events.php');
+    header('location:'.BASE_URL.'events.php');
 }
 else{
     $db->bind("eventId", $eventId);
@@ -35,6 +36,6 @@ else{
     $db->query("UPDATE events SET text = :text WHERE id = :eventId ");
 
     $_SESSION['success'] = "Event updated successfully.";
-    header('location:/onCall/events.php');
+    header('location:'.BASE_URL.'events.php');
 }
 ?>
