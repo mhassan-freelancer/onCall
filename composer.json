@@ -24,6 +24,7 @@
     "issues": "https://github.com/almasaeed2010/AdminLTE/issues"
   },
   "require": {
-    "respect/validation": "^1.1"
+    "respect/validation": "^1.1",
+    "phpmailer/phpmailer": "^5.2"
   }
 }

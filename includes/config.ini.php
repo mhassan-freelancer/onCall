@@ -6,3 +6,4 @@ password = "root"
 dbname = oncall
 baseUrl ="http://localhost/"
 basePath=""
+phpMailer= "vendor/phpmailer/phpmailer/PHPMailerAutoload.php"

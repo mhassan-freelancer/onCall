@@ -1,10 +1,10 @@
 <?php session_start();
 include 'header.php';
+require  'vendor/autoload.php';
+use Respect\Validation\Validator as v;
 
 if($_SERVER['REQUEST_METHOD']=="POST")
 {
-  require  'vendor/autoload.php';
-  use Respect\Validation\Validator as v;
 
   $recoveryEmail = $_POST['email'];
   if(!v::email()->validate($recoveryEmail))
@@ -14,11 +14,49 @@ if($_SERVER['REQUEST_METHOD']=="POST")
 <?php
   }
 
-  require("includes/Db.class.php");
   require 'includes/PasswordStorage.php';
+  require ('includes/functions.php');
   $db = new DB();
-  $password = 
-  $hash = PasswordStorage::create_hash();
+  $password = generateStrongPassword(8);
+  $hash = PasswordStorage::create_hash($password);
+  $db->bind("email",$recoveryEmail );
+  $person = $db->row("select * from user where email = :email ");
+  if($person)
+  {
+    $db->bind("email",$recoveryEmail );
+    $db->bind("password",$hash );
+    $db->query("update user set password =:password where email = :email");
+
+    require PHP_MAILER;
+    $mail = new PHPMailer;
+    $mail->isSMTP();
+    //$mail->SMTPDebug = 2;
+    // $mail->Debugoutput = 'html';
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 587;
+    $mail->SMTPSecure = 'tls';
+    $mail->SMTPAuth = true;
+    $mail->Username = "asimoncall@gmail.com";
+    $mail->Password = "asim12345";
+    $mail->setFrom('asimizb@gmail.com', 'OnCall Support');
+    $mail->addAddress($recoveryEmail, $person['first_name']." ".$person['last_name']);
+    $mail->Subject = 'OnCall Password Recover';
+    $mail->msgHTML("Your new Password is ".$password);
+    if (!$mail->send()) {
+      echo "Mailer Error: " . $mail->ErrorInfo;
+      ?>
+      <script>alert("Something went wrong Contact us support@oncall.com");</script>
+      <?php
+
+    } else {
+      ?>
+      <script>alert("Check your email");</script>
+      <?php
+    }
+
+  }
+
+
 }
 ?>
 <body class="hold-transition skin-green sidebar-mini">
@@ -40,7 +78,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
                       <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 
                       <div class="col-sm-10">
-                        <input name="email" id="username" type="email" class="form-control"  placeholder="Email" value="">
+                        <input name="email" id="username" type="email" class="form-control"  placeholder="Email" value="asimizb@gmail.com">
                       </div>
                     </div>
 
