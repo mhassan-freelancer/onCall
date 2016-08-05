@@ -1,0 +1,13 @@
+Time : 08:19:29
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':id' at line 1
+Raw SQL : select * from modules where id:id 
+
+Time : 07:52:50
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'alaram' in 'field list'
+Raw SQL : Insert into user (first_name,last_name,email,username,password,enabled,admin,alaram)VALUES (
+                                  :firstname,:lastname,:email,:username,:password,1,:isadmin,:alaram)
+
+Time : 07:51:20
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':,1,?,?)' at line 2
+Raw SQL : Insert into user (first_name,last_name,email,username,password,enabled,admin,alaram)VALUES (
+                                  :firstname,:lastname,:email,:username,:password:,1,:isadmin,:alaram)

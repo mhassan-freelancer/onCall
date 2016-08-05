@@ -1,0 +1,59 @@
+.loginform
+{
+	margin-top: 270px;
+}
+
+.footer-style {
+    background: #fff;
+    padding: 30px;
+    color: #444;
+    border-top: 1px solid #4a7e00;
+    margin-top: 250px;
+}
+
+.box-header.with-border {
+    border-bottom: 1px solid #4a7e00 !important;
+    margin-bottom:  15px !important;
+    
+}
+
+.box-footer {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top: 1px solid #4a7e00 !important;
+    padding: 10px;
+ 
+    background-color: #fff;
+}
+
+
+.wrapper
+{
+	height: auto !important;
+}
+
+
+.mt-50
+{
+	margin-top: 50px;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #4a7e00 !important;
+    border-color: #4a7e00  !important;
+}
+
+.btn-danger {
+    background-color: #ff7010 !important;
+    border-color: #ff7010 !important;
+}
+
+.btn-success {
+    background-color: #4a7e00 !important;
+    border-color: #4a7e00 !important;
+}

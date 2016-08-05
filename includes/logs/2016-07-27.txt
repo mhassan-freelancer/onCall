@@ -1,0 +1,2 @@
+Time : 06:56:58
+SQLSTATE[42000] [1049] Unknown database 'oncall'

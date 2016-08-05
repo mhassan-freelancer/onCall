@@ -1,0 +1,3 @@
+Time : 11:51:42
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : select * from user where id = :1

@@ -1,0 +1,21 @@
+Time : 11:13:07
+SQLSTATE[HY093]: Invalid parameter number
+Raw SQL : select * from user where username = :username and password = :password
+
+Time : 11:01:23
+SQLSTATE[HY000] [1049] Unknown database 'testdb'
+
+Time : 11:00:55
+SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+
+Time : 10:59:56
+SQLSTATE[HY000] [2002] No such file or directory
+
+Time : 10:59:32
+SQLSTATE[HY000] [2002] No such file or directory
+
+Time : 10:59:11
+SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+
+Time : 10:57:49
+SQLSTATE[HY000] [2002] No such file or directory
