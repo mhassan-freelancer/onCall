@@ -1,5 +1,25 @@
 <?php session_start();
 include 'header.php';
+
+if($_SERVER['REQUEST_METHOD']=="POST")
+{
+  require  'vendor/autoload.php';
+  use Respect\Validation\Validator as v;
+
+  $recoveryEmail = $_POST['email'];
+  if(!v::email()->validate($recoveryEmail))
+  {
+    ?>
+      <script>alert("Invalid Email");</script>
+<?php
+  }
+
+  require("includes/Db.class.php");
+  require 'includes/PasswordStorage.php';
+  $db = new DB();
+  $password = 
+  $hash = PasswordStorage::create_hash();
+}
 ?>
 <body class="hold-transition skin-green sidebar-mini">
 <div class="container">
@@ -14,21 +34,21 @@ include 'header.php';
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="post">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 
                       <div class="col-sm-10">
-                        <input id="username" type="email" class="form-control" id="inputEmail3" placeholder="Email" value="asimizb@gmail.com">
+                        <input name="email" id="username" type="email" class="form-control"  placeholder="Email" value="">
                       </div>
                     </div>
 
                   </div>
                   <!-- /.box-body -->
                   <div class="box-footer">
-                    <button type="submit" class="btn btn-default">Cancel</button>
-                    <button id="passwordRecover" type="button" class="btn btn-success pull-right">Recover My Password</button>
+
+                    <button id="passwordRecover" type="submit" class="btn btn-success pull-right">Recover My Password</button>
                   </div>
                   <!-- /.box-footer -->
                 </form>

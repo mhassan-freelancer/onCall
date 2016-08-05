@@ -49,38 +49,18 @@
 
 
 
-                    <li >
-                        <a href="#" class="" data-toggle="dropdown">
-
-                        </a>
-                    </li>
-
-
-                    <li class="dropdown user user-menu">
+                    <li class="dropdown user user-menu" >
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <span class="hidden-xs"><?php echo $_SESSION['on_call_u_username'] ?></span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <!-- User image -->
-                            <li class="user-header">
-                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    </li>
 
-                                <p>
-                                    <?php echo $_SESSION['on_call_u_firstname'] ?>- Web Developer
-                                    <small>Member since Nov. 2012</small>
-                                </p>
-                            </li>
-                            <!-- Menu Body -->
 
-                            <!-- Menu Footer-->
-                            <li class="user-footer">
+                    <li class="dropdown" >
 
-                                <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                </div>
-                            </li>
-                        </ul>
+                        <a href="logout.php">Logout</a>
+
                     </li>
                     <!-- Control Sidebar Toggle Button -->
 

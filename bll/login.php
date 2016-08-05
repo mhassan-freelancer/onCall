@@ -3,14 +3,13 @@ header("Content-Type : application/json ");
 
 require("../includes/Db.class.php");
 require  '../vendor/autoload.php';
-
 require '../includes/PasswordStorage.php';
 
 
 $db = new DB();
 use Respect\Validation\Validator as v;
- $useremail = $_REQUEST['username'];
- $password= $_REQUEST['password'];
+ $useremail = $_POST['username'];
+ $password= $_POST['password'];
 
 $error = false;
 if(!v::email()->validate($useremail))
@@ -32,19 +31,20 @@ if($error)
 $nullValidator = v::nullType();
 
 $db->bind("email",$useremail);
-$hash = PasswordStorage::create_hash($password);
 
-$db->bind("password",$hash);
-$person = $db->row("select * from user where email = :email and password = :password");
+$person = $db->row("select * from user where email = :email ");
 
-if(!$nullValidator->validate($person))
+$isvaliduser = PasswordStorage::verify_password($password, $person['password']);
+
+
+if(!$nullValidator->validate($person) && $isvaliduser)
 {
         session_start();
     $_SESSION['on_call_u_id'] = $person['id'];
     $_SESSION['on_call_u_username'] = $person['username'];
     $_SESSION['on_call_u_firstname']= $person['first_name'];
     $rep = array("message"=>"success" );
-    return print json_encode($rep);
+     print json_encode($rep);
 }
 else
 {

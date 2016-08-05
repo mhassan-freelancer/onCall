@@ -1,14 +1,5 @@
 <?php
-session_start();
-print_r($_SESSION);
-
-if(isset($_SESSION['on_call_u_id']))
-{
-
-}
-else {
-    //header("location:/login.php?error=loginrequired");
-}
+include 'session_protect.php';
 include 'header.php';
 include 'header_loggedin.php';
 ?>

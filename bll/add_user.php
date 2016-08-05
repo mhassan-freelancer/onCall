@@ -3,7 +3,7 @@ require("../includes/Db.class.php");
 require  '../vendor/autoload.php';
 
 require '../includes/PasswordStorage.php';
-
+require ('../includes/config.php');
 
 $db = new DB();
 use Respect\Validation\Validator as v;
@@ -89,13 +89,14 @@ else{
         $db->query("Insert into user (first_name,last_name,email,username,password,enabled,admin,alarm)VALUES (
                                   :firstname,:lastname,:email,:username,:password,1,:isadmin,:alarm)");
         $_SESSION['success'] ="User Added Successfully";
-        header('location:/add_user.php');
+        header('location:'.BASE_URL.'add_user.php');
     }
     else
     {
         $_SESSION['error'] ="User Already Exists";
-        header('location:/add_user.php');
+        header('location:'.BASE_URL.'add_user.php');
     }
+
 }
 
 

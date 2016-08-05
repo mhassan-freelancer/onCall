@@ -2,5 +2,7 @@
 [SQL]
 host = localhost
 user = root
-password = ""
+password = "root"
 dbname = oncall
+baseUrl ="http://localhost/"
+basePath=""

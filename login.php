@@ -1,5 +1,6 @@
 <?php session_start();
 include 'header.php';
+
 ?>
 <body class="hold-transition skin-green sidebar-mini">
 <div class="container">
@@ -20,23 +21,24 @@ include 'header.php';
                       <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 
                       <div class="col-sm-10">
-                        <input id="username" type="email" class="form-control" id="inputEmail3" placeholder="Email" value="asimizb@gmail.com">
+                        <input id="username" type="email" class="form-control" id="inputEmail3" placeholder="Email" >
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 
                       <div class="col-sm-10">
-                        <input id="password" type="password" class="form-control" id="inputPassword3" placeholder="Password" value="admin">
+                        <input id="password" type="password" class="form-control" id="inputPassword3" placeholder="Password" >
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
+                        <div class="checkbox" style="float: left">
                           <label>
                             <input type="checkbox"> Remember me
                           </label>
                         </div>
+                        <a style="float: right" href="forget.php">Forget Password?</a>
                       </div>
                     </div>
                   </div>
