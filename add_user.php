@@ -108,23 +108,7 @@ Add Users
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="asim123">
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Modules</label>
-                                <br/>
-                                <?php
-                                 $modules = getModules();
-                                ?>
-                                <select name="module">
-
-                                    <option value="0">Please select the module</option>
-                                    <?php
-                                    foreach ($modules as $module)
-                                    {
-                                        echo '<option value="'.$module['id'].'">'.$module['name'].'</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
+                            
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" name="isadmin"> Admin

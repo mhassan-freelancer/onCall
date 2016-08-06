@@ -8,7 +8,7 @@ $db = new DB();
 use Respect\Validation\Validator as v;
 
 $firstname =  $lastname = $username = $email = $password ="";
-$moudleId = 0;
+
 $isadmin = false;
 if(isset($_POST['firstname']))
      $firstname = $_POST['firstname'];
@@ -20,8 +20,7 @@ if(isset($_POST['password']))
      $password  = $_POST['password'];
 if(isset($_POST['email']))
      $email = $_POST['email'];
-if(isset($_POST['module']))
-     $moudleId= $_POST['module'];
+
 if(isset($_POST['isadmin']))
       $isadmin = $_POST['isadmin'];
 
@@ -78,15 +77,15 @@ else{
         $db->bind("username",$username);
         $db->bind("email",$email);
         $db->bind("password",$password);
-        $db->bind("alarm",$moudleId);
+
         if($isadmin == "on")
         {
             $isadmin = 1;
         }
         $db->bind("isadmin",$isadmin);
 
-        $db->query("Insert into user (first_name,last_name,email,username,password,enabled,admin,alarm)VALUES (
-                                  :firstname,:lastname,:email,:username,:password,1,:isadmin,:alarm)");
+        $db->query("Insert into user (first_name,last_name,email,username,password,enabled,admin)VALUES (
+                                  :firstname,:lastname,:email,:username,:password,1,:isadmin)");
         $_SESSION['success'] ="User Added Successfully";
         header('location:'.BASE_URL.'add_user.php');
     }
