@@ -490,6 +490,13 @@ function getEventInfo($id)
 	$events = $db->row("select * from events Where id = :id");
 	return $events;
 }
+function getModuleConfig($moudleId)
+{
+	$db = new DB();
+	$db->bind("id", $moudleId);
+	return $data = $db->query("select * from config as con inner join parameters as par on con.parameter_id = par.parameter_id where con.module_id =:id");
+	
+}
 function generateStrongPassword($length = 9, $add_dashes = false, $available_sets = 'luds')
 {
 	$sets = array();
