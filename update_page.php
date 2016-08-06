@@ -3,6 +3,7 @@ include 'session_protect.php';
 include 'header.php';
 include 'header_loggedin.php';
 require __DIR__.'/includes/functions.php';
+print_r($_SESSION);
 $moduleid = 0;
 if(isset($_GET['moduleid']))
 {
@@ -16,7 +17,37 @@ if(isset($_GET['moduleid']))
     <!-- Content Header (Page header) -->
 
 
-  
+      <?php
+      if(isset($_SESSION['error']))
+      {
+
+
+              ?>
+              <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                  <?php
+                  echo $_SESSION['error'];
+                  $_SESSION['error'] = null;
+                  ?>
+              </div>
+              <?php
+
+      }else if(isset($_SESSION['success']))
+      {
+
+          ?>
+          <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4><i class="icon fa fa-check"></i> Alert!</h4>
+              <?php
+              echo $_SESSION['success'];
+              $_SESSION['success'] = null;
+              ?>
+          </div>
+          <?php
+      }
+      ?>
       
 
       <div class="container-fluid">
@@ -84,6 +115,7 @@ if(isset($_GET['moduleid']))
               </div>
             <div class="col-md-12">
                 <form method="post" action="bll/update_page.php">
+                    <input type="hidden" name="moduleid" value="<? echo $moduleid ?>" >
                     <div class="box-body">
                         <?php
                         $configurations = getModuleConfig($moduleid);
@@ -95,7 +127,7 @@ if(isset($_GET['moduleid']))
                                 <?php if($config['data_type'] == "TEXT")
                                 {?>
 
-                                    <input type="text" class="form-control"  value="<?php echo $config['value']; ?>">
+                                    <input name="config-<? echo $config['id'] ?>" type="text" class="form-control"  value="<?php echo $config['value']; ?>">
                                 <?php
                                 }  if($config['data_type'] == "DROP_DOWN")
                                 {
@@ -103,18 +135,20 @@ if(isset($_GET['moduleid']))
                                     $range = $config['data_type_values'];
 
                                     $range = explode(',',$range );
-
+                                    if(!$config['allow_decimal'])
+                                    {
                                     ?>
-
-                                    <select class="form-control select3" name="">
+                                    <input name="config-<? echo $config['id'] ?>" class="form-control" type="number" value="<? echo $range[0] ?>"
+                                           min="<? echo $range[0] ?>" max="<? echo $range[1] ?>" step="1"/>
                                         <?php
-                                            for($i = $range[0]; $i<= $range[1]; $i++)
-                                            {
-                                                echo '<option value="'.$i.'">'.$i.'</option>';
-                                            }
-                                        ?>
-                                    </select>
-                                    <?php
+                                    }
+                                   else
+                                    {
+                                    ?>
+                                    <input name="config-<? echo $config['id'] ?>" class="form-control" type="number" value="<? echo $range[0] ?>"
+                                           min="<? echo $range[0] ?>" max="<? echo $range[1] ?>" step="any"/>
+                                        <?php
+                                    }
                                 }
                                 ?>
 
@@ -126,6 +160,7 @@ if(isset($_GET['moduleid']))
 
                     </div>
                     <div class="box-footer">
+                                <br/>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
