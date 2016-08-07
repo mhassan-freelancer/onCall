@@ -1,6 +1,4 @@
-<?php
-session_start();
-print_r($_SESSION);
+<?php include 'session_protect.php';
 
 $parameterId= 0;
 if(isset($_GET['id']))

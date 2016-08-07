@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     $db->bind("password",$hash );
     $db->query("update user set password =:password where email = :email");
 
-    require PHP_MAILER;
+    require phpMailer;
     $mail = new PHPMailer;
     $mail->isSMTP();
     //$mail->SMTPDebug = 2;
@@ -78,7 +78,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
                       <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 
                       <div class="col-sm-10">
-                        <input name="email" id="username" type="email" class="form-control"  placeholder="Email" value="asimizb@gmail.com">
+                        <input name="email" id="username" type="email" class="form-control"  placeholder="Email" >
                       </div>
                     </div>
 

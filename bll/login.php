@@ -1,9 +1,11 @@
 <?php
 header("Content-Type : application/json ");
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+require(__DIR__."/../includes/Db.class.php");
+require  __DIR__.'/../vendor/autoload.php';
+require __DIR__.'/../includes/PasswordStorage.php';
 
-require("../includes/Db.class.php");
-require  '../vendor/autoload.php';
-require '../includes/PasswordStorage.php';
 
 
 $db = new DB();

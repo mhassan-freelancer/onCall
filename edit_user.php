@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php include 'session_protect.php';
 $userid= 0;
 if(isset($_GET['id']))
 {

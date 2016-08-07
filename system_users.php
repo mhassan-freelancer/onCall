@@ -1,6 +1,4 @@
-<?php
-session_start();
-print_r($_SESSION);
+<?php include 'session_protect.php';
 
 if(isset($_SESSION['on_call_u_id']))
 {

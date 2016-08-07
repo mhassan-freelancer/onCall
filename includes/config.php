@@ -10,7 +10,9 @@ if (!defined('BASE_PATH')) {
 if (!defined('PHP_MAILER')) {
     define('PHP_MAILER',$ini_array['phpMailer'] );
 }
-
+if (!defined('DIR_BASE')) {
+    define('DIR_BASE',      dirname( dirname( __FILE__ ) ) . '/');
+}
 
 
 ?>
