@@ -115,7 +115,7 @@ if(isset($_GET['moduleid']))
               </div>
             <div class="col-md-12">
                 <form method="post" action="bll/update_page.php">
-                    <input type="hidden" name="moduleid" value="<? echo $moduleid ?>" >
+                    <input type="hidden" name="moduleid" value="<?php echo $moduleid ?>" >
                     <div class="box-body">
                         <?php
                         $configurations = getModuleConfig($moduleid);
@@ -127,7 +127,7 @@ if(isset($_GET['moduleid']))
                                 <?php if($config['data_type'] == "TEXT")
                                 {?>
 
-                                    <input name="config-<? echo $config['id'] ?>" type="text" class="form-control"  value="<?php echo $config['value']; ?>">
+                                    <input name="config-<?php echo $config['id'] ?>" type="text" class="form-control"  value="<?php echo $config['value']; ?>">
                                 <?php
                                 }  if($config['data_type'] == "DROP_DOWN")
                                 {
@@ -138,15 +138,15 @@ if(isset($_GET['moduleid']))
                                     if(!$config['allow_decimal'])
                                     {
                                     ?>
-                                    <input name="config-<? echo $config['id'] ?>" class="form-control" type="number" value="<? echo $range[0] ?>"
-                                           min="<? echo $range[0] ?>" max="<? echo $range[1] ?>" step="1"/>
+                                    <input name="config-<?php echo $config['id'] ?>" class="form-control" type="number" value="<?php echo $range[0] ?>"
+                                           min="<? echo $range[0] ?>" max="<?php echo $range[1] ?>" step="1"/>
                                         <?php
                                     }
                                    else
                                     {
                                     ?>
-                                    <input name="config-<? echo $config['id'] ?>" class="form-control" type="number" value="<? echo $range[0] ?>"
-                                           min="<? echo $range[0] ?>" max="<? echo $range[1] ?>" step="any"/>
+                                    <input name="config-<?php echo $config['id'] ?>" class="form-control" type="number" value="<?php echo $range[0] ?>"
+                                           min="<?php echo $range[0] ?>" max="<?php echo $range[1] ?>" step="any"/>
                                         <?php
                                     }
                                 }

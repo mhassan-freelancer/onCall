@@ -1,6 +1,8 @@
 <?php
-require ("../session_protect.php");
-require ("../includes/functions.php");
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+require (__DIR__."/../session_protect.php");
+require (__DIR__."/../includes/functions.php");
 $db = new DB();
 $moduleid= 0;
 if(isset($_POST['moduleid']))
