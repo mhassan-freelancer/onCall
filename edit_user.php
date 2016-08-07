@@ -5,6 +5,7 @@ if(isset($_GET['id']))
     $userid = $_GET['id'];
 
 }
+
 require  'vendor/autoload.php';
 use Respect\Validation\Validator as v;
 
@@ -65,7 +66,22 @@ require 'includes/functions.php';
             </div>
     <?php
         }
+    }else if(isset($_SESSION['success']))
+    {
+
+        ?>
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+            <?php
+            echo $_SESSION['success'];
+            $_SESSION['success'] = null;
+            ?>
+        </div>
+        <?php
     }
+
+
     $userinfo = getUserInfo($userid);
 
     ?>
@@ -91,7 +107,9 @@ Edit User
                     <!-- /.box-header -->
                     <!-- form start -->
                     <form role="form" method="post" action="bll/edit_user.php">
-                        <input type="hidden" name="userid" value="<?php echo $userinfo['id'] ?>">
+                        <input type="hidden" name="id" value="<?php echo $userinfo['id'] ?>">
+
+
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="firstname">First Name</label>
@@ -111,58 +129,39 @@ Edit User
                                 <label for="email">Email address</label>
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Enter email" value="<?php echo $userinfo['email'] ?>">
                             </div>
-
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Modules</label>
-                                <br/>
-                                <?php
-                                 $modules = getModules();
-                                ?>
-                                <select name="module">
-
-                                    <option value="0">Please select the module</option>
-                                    <?php
-                                    foreach ($modules as $module)
-                                    {
-                                        if($userinfo['alarm'] == $module['id'])
-                                        echo '<option value="'.$module['id'].'" selected="selected">'.$module['name'].'</option>';
-                                        else{
-                                            echo '<option value="'.$module['id'].'">'.$module['name'].'</option>';
-                                        }
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="checkbox">
                                 <label>
                                     <?php
+                                    if($userinfo['enabled']== 1)
+                                    {?>
+                                        <input type='hidden' value='0' name='isenabled'>
+
+                                        <input type="checkbox" name="isenabled"  value="1" checked="checked"  /> Enabled
+                                        <?php
+                                    }
+                                    else
+                                    {   ?>
+                                        <input type="checkbox" name="isenabled" value="1" /> Enabled
+                                        <?php
+                                    }
+                                echo '</label><label>';
                                     if($userinfo['admin']== 1)
                                     {
-                                        echo '<input type="checkbox" name="isadmin" checked="checked"> Admin';
+                                        echo  '<input type="hidden" value="0" name="isadmin">';
+                                        echo '<br /><input type="checkbox" name="isadmin"  value="1" checked="checked"  /> Admin';
 
                                     }else
                                     {
-                                        echo '<input type="checkbox" name="isadmin"> Admin';
+                                        echo '<br /><input type="checkbox" name="isadmin" value="1" /> Admin';
                                     }
-                                    ?>
 
 
-                                </label>
-                                <label>
-                                    <?php
-                                    if($userinfo['admin']== 1)
-                                    {
-                                        echo '<input type="checkbox" name="enabled" checked="checked"> Enabled';
-
-                                    }else
-                                    {
-                                        echo '<input type="checkbox" name="enabled"> Enabled';
-                                    }
                                     ?>
 
 
                                 </label>
                             </div>
+
                         </div>
                         <!-- /.box-body -->
 

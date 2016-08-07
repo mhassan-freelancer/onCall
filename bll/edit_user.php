@@ -1,29 +1,36 @@
 <?php session_start();
-require("../includes/Db.class.php");
-require  '../vendor/autoload.php';
-require '../includes/PasswordStorage.php';
-
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+require(__DIR__."/../includes/Db.class.php");
+require  __DIR__.'/../vendor/autoload.php';
+require __DIR__.'/../includes/config.php';
 
 $db = new DB();
 use Respect\Validation\Validator as v;
 
 $firstname =  $lastname = $username = $email = $password ="";
 $moudleId = 0;
-$isadmin = false;
+$isadmin = 0;
+$userid = 0;
+$isenabled = 0;
 if(isset($_POST['firstname']))
      $firstname = $_POST['firstname'];
 if(isset($_POST['lastname']))
      $lastname = $_POST['lastname'];
 if(isset($_POST['username']))
      $username = $_POST['username'];
-if(isset($_POST['password']))
-     $password  = $_POST['password'];
 if(isset($_POST['email']))
      $email = $_POST['email'];
 if(isset($_POST['module']))
      $moudleId= $_POST['module'];
 if(isset($_POST['isadmin']))
       $isadmin = $_POST['isadmin'];
+if(isset($_POST['id']))
+    $userid = $_POST['id'];
+if(isset($_POST['isenabled']))
+    $isenabled = $_POST['isenabled'];
+
+
 
 
 $error = false;
@@ -32,16 +39,6 @@ if(!v::email()->validate($email))
 {
     $error = true;
     array_push($errorArray, "Email not valid");
-}
-$passwordValidator= v::noWhitespace();
-if(!$passwordValidator->validate($password))
-{
-    $error = true;
-    array_push($errorArray, "No space allowed in password");
-}
-else
-{
- $password = PasswordStorage::create_hash($password);
 }
 $alphaInput = v::alpha();
 if(!$alphaInput->validate($firstname))
@@ -60,35 +57,53 @@ if(!$alphanumeric->validate($username))
     $error = true;
     array_push($errorArray, "Only Alpha Numeric Allowed");
 }
+if(!$userid>0)
+{
+    $error = true;
+    array_push($errorArray, "User ID invalid");
+}
 
 if($error)
 {
     $_SESSION['error'] =$errorArray;
-    header('location:'.BASE_URL.'edit_user.php');
+    header('location:'.BASE_URL.'edit_user.php?id='.$userid);
 }
 else{
-    $db->bind("email",$email);
-    $db->bind("username",$username);
-    $isEmailExist = $db->single("select * from user where email = :email or username = :username");
+    $db->bind('userid',$userid );
+    $isEmailExist = $db->single("select * from user where id = :userid ");
 
     if($isEmailExist)
-    {
-        $db->bind("firstname",$firstname);
-        $db->bind("lastname",$lastname);
-        $db->bind("username",$username);
-        $db->bind("email",$email);
-        $db->bind("password",$password);
-        $db->bind("alarm",$moudleId);
-        if($isadmin == "on")
-        {
-            $isadmin = 1;
-        }
-        $db->bind("isadmin",$isadmin);
+    { $db = new DB();
 
-        $db->query("Insert into user (first_name,last_name,email,username,password,enabled,admin,alarm)VALUES (
-                                  :firstname,:lastname,:email,:username,:password,1,:isadmin,:alarm)");
-        $_SESSION['success'] ="User Added Successfully";
-        header('location:'.BASE_URL.'add_user.php');
+       $data = (array(
+            "firstname"=>$firstname,
+            "lastname"=>$lastname,
+            "username"=>$username,
+            "email"=>$email,
+            "alarm"=>$moudleId,
+            "isadmin"=>$isadmin,
+            "enabled"=>$isenabled,
+            "userid"=>$userid));
+
+
+        $db->bind("userId", $userid);
+
+
+        $db->bind("first_name", $firstname);
+        $db->bind("last_name", $lastname);
+        $db->bind("username", $username);
+        $db->bind("email", $email);
+        $db->bind("enabled", (string)$isenabled);
+        $db->bind("isadmin", (string)$isadmin);
+
+
+        $db->query("UPDATE user set first_name = :first_name, last_name = :last_name, username = :username , email =:email , enabled = :enabled , admin = :isadmin  
+              where id = :userId");
+
+
+        $_SESSION['success'] ="User Update Successfully";
+
+        header('location:'.BASE_URL.'edit_user.php?id='.$userid);
     }
     
 }
