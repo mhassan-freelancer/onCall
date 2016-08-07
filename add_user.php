@@ -86,25 +86,25 @@ Add Users
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="firstname">First Name</label>
-                                <input type="text" class="form-control" id="firstname"  name="firstname" placeholder="First Name" value="Asim">
+                                <input type="text" class="form-control" id="firstname"  name="firstname" placeholder="First Name" >
                             </div>
                             <div class="form-group">
                                 <label for="lastname">Last Name</label>
-                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" value="Ashfaq">
+                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" >
                             </div>
 
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="asimashfaq">
+                                <input type="text" class="form-control" name="username" id="username" placeholder="Username" >
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Email address</label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter email" value="asimizb2@gmail.com">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter email" >
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="asim123">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
                             </div>
                             
                             <div class="checkbox">
