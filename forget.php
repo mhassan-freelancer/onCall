@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     $db->bind("password",$hash );
     $db->query("update user set password =:password where email = :email");
 
-    require phpMailer;
+    require PHP_MAILER;
     $mail = new PHPMailer;
     $mail->isSMTP();
     //$mail->SMTPDebug = 2;
