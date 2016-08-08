@@ -27,9 +27,9 @@ if(isset($_SESSION['on_call_u_id']))
 else {
     //header("location:/login.php?error=loginrequired");
 }
-include 'header.php';
-include 'header_loggedin.php';
-require 'includes/functions.php';
+include __DIR__.'/header.php';
+include __DIR__.'/header_loggedin.php';
+require __DIR__.'/includes/functions.php';
 ?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->

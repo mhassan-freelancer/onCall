@@ -100,7 +100,7 @@ include 'header_loggedin.php';
                   echo '<td>'.getModuleName($user['alarm']).'</td>';
                   echo '<td>'.$user['admin'].'</td>';
                   echo '<td><a class="btn btn-danger" href="edit_user.php?id='.$user['id'].'">Update</a> 
-                  <a href="/onCall/bll/delete_user.php?id='.$user['id'].'" class="btn btn-default">Disable</a></td></tr>';
+                  <a href="/bll/delete_user.php?id='.$user['id'].'" class="btn btn-default">Disable</a></td></tr>';
                 }
                 ?>
 
