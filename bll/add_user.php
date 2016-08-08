@@ -80,7 +80,7 @@ else{
         $db->query("Insert into user (first_name,last_name,email,username,password,enabled,admin)VALUES (
                                   :firstname,:lastname,:email,:username,:password,1,:isadmin)");
 
-        require '../vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
+        require PHP_MAILER;
         $mail = new PHPMailer;
         $mail->isSMTP();
         $mail->SMTPDebug = 2;
@@ -108,12 +108,12 @@ else{
 
 
         $_SESSION['success'] ="User Added Successfully";
-        // header('location:'.BASE_URL.'add_user.php');
+         header('location:'.BASE_URL.'add_user.php');
     }
     else
     {
         $_SESSION['error'] ="User Already Exists";
-        // header('location:'.BASE_URL.'add_user.php');
+         header('location:'.BASE_URL.'add_user.php');
     }
 
 }
