@@ -76,7 +76,7 @@ Add Users
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="bll/add_user.php">
+                    <form id="addUserForm" role="form" method="post" action="bll/add_user.php" onsubmit="return processfrom();">
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="firstname">First Name</label>
@@ -114,3 +114,30 @@ Add Users
             </div>
         </section>
 </div>
+<script type="application/javascript">
+
+    function processfrom() {
+        if($("#addUserForm").valid())
+            return true;
+        return false;
+    }
+
+    $("#addUserForm").validate({
+        rules: {
+            firstname: "required",
+            lastname: "required",
+            username: "required",
+            email: {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            firstname: "Please enter your firstname",
+            lastname: "Please enter your lastname",
+            username: "Please enter a username",
+            email: "Please enter a valid email address"
+        }
+    });
+
+</script>

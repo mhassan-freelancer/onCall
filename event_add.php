@@ -74,7 +74,7 @@ require 'includes/functions.php';
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="bll/events/event_add.php">
+                    <form id="addEventForm" role="form" method="post" action="bll/events/event_add.php" onsubmit="return processfrom();">
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="event">Event</label>
@@ -82,7 +82,6 @@ require 'includes/functions.php';
                             </div>
                         </div>
                         <!-- /.box-body -->
-
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
@@ -92,3 +91,21 @@ require 'includes/functions.php';
         </div>
     </section>
 </div>
+<script type="application/javascript">
+
+    function processfrom() {
+        if($("#addEventForm").valid())
+            return true;
+        return false;
+    }
+
+    $("#addEventForm").validate({
+        rules: {
+            event: "required"
+        },
+        messages: {
+            event: "Please enter event text."
+        }
+    });
+
+</script>

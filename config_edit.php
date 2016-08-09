@@ -87,7 +87,7 @@ if(!v::intVal()->min(1,true)->validate($configId))
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="bll/config/config_edit.php">
+                    <form id="editConfigForm" role="form" method="post" action="bll/config/config_edit.php" onsubmit="return processfrom();">
                         <input type="hidden" id="configId" name="configId" value="<?php echo $configId ?>">
                         <div class="box-body">
 
@@ -149,3 +149,25 @@ if(!v::intVal()->min(1,true)->validate($configId))
         </div>
     </section>
 </div>
+<script type="application/javascript">
+
+    function processfrom() {
+        if($("#editConfigForm").valid())
+            return true;
+        return false;
+    }
+
+    $("#editConfigForm").validate({
+        rules: {
+            module: "required",
+            parameter: "required",
+            value: "required"
+        },
+        messages: {
+            module: "Please select module.",
+            parameter: "Please select parameter.",
+            value: "Please enter value."
+        }
+    });
+
+</script>

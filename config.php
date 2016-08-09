@@ -1,6 +1,11 @@
-<?php
-include 'session_protect.php';
-include 'role_check_administrator.php';
+<?php include 'session_protect.php';
+if(isset($_SESSION['on_call_u_id']))
+{
+
+}
+else {
+
+}
 include 'header.php';
 include 'header_loggedin.php';
 ?>
@@ -203,7 +208,7 @@ include 'header_loggedin.php';
 <script src="dist/js/app.min.js"></script>
 
 <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
-<
+
 <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 
@@ -290,7 +295,7 @@ include 'header_loggedin.php';
   });
 </script>
 
-</script> 
+</script>
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -423,6 +428,6 @@ include 'header_loggedin.php';
       "autoWidth": false
     });
 </script>
--->
+
 </body>
 </html>

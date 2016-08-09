@@ -88,19 +88,19 @@ if(!v::intVal()->min(1,true)->validate($parameterId))
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="bll/parameter_edit.php">
+                    <form id="editParameterForm" role="form" method="post" action="bll/parameter_edit.php" onsubmit="return processfrom();">
                         <input type="hidden" id="parameterId" name="parameterId" value="<?php echo $parameterId ?>">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="firstname">Parameter</label>
+                                <label for="parameter">Parameter</label>
                                 <input type="text" class="form-control" id="parameter"  name="parameter" placeholder="Parameter" value="<?php echo $parameterInfo['parameter'] ?>">
                             </div>
                             <div class="form-group">
-                                <label for="lastname">Label</label>
+                                <label for="label">Label</label>
                                 <input type="text" class="form-control" id="label"  name="label" placeholder="Label" value="<?php echo $parameterInfo['label'] ?>">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Data type</label>
+                                <label for="data_type">Data type</label>
                                 <br/>
                                 <select name="data_type" id="data_type" class="form-control" onchange="onDataTypeChange(this)">
                                     <option value="">Please Select data type</option>
@@ -160,6 +160,26 @@ if(!v::intVal()->min(1,true)->validate($parameterId))
             document.getElementById("data_type_value_field").style.display = 'none';
         }
     }
+
+    function processfrom() {
+        if($("#editParameterForm").valid())
+            return true;
+        return false;
+    }
+
+    $("#editParameterForm").validate({
+        rules: {
+            parameter: "required",
+            label: "required",
+            data_type: "required"
+        },
+        messages: {
+            parameter: "Please enter parameter.",
+            label: "Please enter label.",
+            data_type: "Please select data type."
+        }
+    });
+
 </script>
 <?php
 if($parameterInfo['data_type'] == 'DROP_DOWN')

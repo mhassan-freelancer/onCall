@@ -55,18 +55,6 @@ require 'includes/functions.php';
         <?php
     }
     ?>
-
-    <script type="application/javascript">
-        function onDataTypeChange(scope) {
-            var val = scope.value.trim();
-            if(val == "DROP_DOWN") {
-                document.getElementById("data_type_value_field").style.display = 'block';
-            } else {
-                document.getElementById("data_type_value_field").style.display = 'none';
-            }
-        }
-    </script>
-
     <section class="content-header">
         <h1>
             Add Parameter
@@ -85,18 +73,19 @@ require 'includes/functions.php';
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="bll/parameter_add.php">
+                    <form id="addParameterForm" role="form" method="post" action="bll/parameter_add.php " onsubmit="return processfrom();">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="firstname">Parameter</label>
+                                <label for="parameter">Parameter</label>
                                 <input type="text" class="form-control" id="parameter"  name="parameter" placeholder="Paramater">
+
                             </div>
                             <div class="form-group">
-                                <label for="lastname">Label</label>
+                                <label for="label">Label</label>
                                 <input type="text" class="form-control" id="label" name="label" placeholder="Label">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Data type</label>
+                                <label for="data_type">Data type</label>
                                 <br/>
                                 <select name="data_type" id="data_type" class="form-control" onchange="onDataTypeChange(this)">
                                     <option value="">Please Select data type</option>
@@ -106,9 +95,9 @@ require 'includes/functions.php';
                                 </select>
                             </div>
                             <div class="form-group" id="data_type_value_field" style="display: none">
-                                <label for="value">From</label>
+                                <label for="from">From</label>
                                 <input type="number" class="form-control" min="0"  id="from" name="from" placeholder="From">
-                                <label for="value">To</label>
+                                <label for="to">To</label>
                                 <input type="number" class="form-control" min="1" id="to" name="to" placeholder="To"> <br />
                                 <label for="allow_decimal">Allow Decimal </label> &nbsp; <input type="checkbox" id="allow_decimal" name="allow_decimal" />
                             </div>
@@ -124,3 +113,34 @@ require 'includes/functions.php';
         </div>
     </section>
 </div>
+<script type="application/javascript">
+
+    function onDataTypeChange(scope) {
+        var val = scope.value.trim();
+        if(val == "DROP_DOWN") {
+            document.getElementById("data_type_value_field").style.display = 'block';
+        } else {
+            document.getElementById("data_type_value_field").style.display = 'none';
+        }
+    }
+
+    function processfrom() {
+        if($("#addParameterForm").valid())
+            return true;
+        return false;
+    }
+
+    $("#addParameterForm").validate({
+        rules: {
+            parameter: "required",
+            label: "required",
+            data_type: "required"
+        },
+        messages: {
+            parameter: "Please enter parameter.",
+            label: "Please enter label.",
+            data_type: "Please select data type."
+        }
+    });
+
+</script>

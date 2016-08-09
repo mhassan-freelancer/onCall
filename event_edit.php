@@ -89,7 +89,7 @@ if(!v::intVal()->min(1,true)->validate($eventId))
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="bll/events/event_edit.php">
+                    <form id="editEventForm" role="form" method="post" action="bll/events/event_edit.php" onsubmit="return processfrom();">
                         <input type="hidden" id="eventId" name="eventId" value="<?php echo $eventId ?>">
                         <div class="box-body">
                             <div class="form-group">
@@ -99,8 +99,6 @@ if(!v::intVal()->min(1,true)->validate($eventId))
                                 </textarea>
                             </div>
                         </div>
-                        <!-- /.box-body -->
-
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
@@ -110,3 +108,21 @@ if(!v::intVal()->min(1,true)->validate($eventId))
         </div>
     </section>
 </div>
+<script type="application/javascript">
+
+    function processfrom() {
+        if($("#editEventForm").valid())
+            return true;
+        return false;
+    }
+
+    $("#editEventForm").validate({
+        rules: {
+            event: "required"
+        },
+        messages: {
+            event: "Please enter event text."
+        }
+    });
+
+</script>

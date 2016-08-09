@@ -109,7 +109,7 @@ Edit User
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="bll/edit_user.php">
+                    <form id="editUserForm" role="form" method="post" action="bll/edit_user.php" onsubmit="return processfrom();">
                         <input type="hidden" name="id" value="<?php echo $userinfo['id'] ?>">
 
 
@@ -177,3 +177,30 @@ Edit User
             </div>
         </section>
 </div>
+<script type="application/javascript">
+
+    function processfrom() {
+        if($("#editUserForm").valid())
+            return true;
+        return false;
+    }
+
+    $("#editUserForm").validate({
+        rules: {
+            firstname: "required",
+            lastname: "required",
+            username: "required",
+            email: {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            firstname: "Please enter your firstname",
+            lastname: "Please enter your lastname",
+            username: "Please enter a username",
+            email: "Please enter a valid email address"
+        }
+    });
+
+</script>

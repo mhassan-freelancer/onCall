@@ -73,17 +73,17 @@ require 'includes/functions.php';
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="bll/config/config_add.php">
+                    <form id="addConfigForm" role="form" method="post" action="bll/config/config_add.php" onsubmit="return processfrom();">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Modules</label>
+                                <label for="module">Modules</label>
                                 <br/>
                                 <?php
                                 $modules = getModules();
                                 ?>
                                 <select name="module" id="module" class="form-control">
 
-                                    <option value="0">Please Select Module</option>
+                                    <option value="">Please Select Module</option>
                                     <?php
                                     foreach ($modules as $module)
                                     {
@@ -93,14 +93,14 @@ require 'includes/functions.php';
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Parameters</label>
+                                <label for="parameter">Parameters</label>
                                 <br/>
                                 <?php
                                 $parameters = getParameters();
                                 ?>
                                 <select name="parameter" id="parameter" class="form-control">
 
-                                    <option value="0">Please Select parameter</option>
+                                    <option value="">Please Select parameter</option>
                                     <?php
                                     foreach ($parameters as $parameter)
                                     {
@@ -111,7 +111,7 @@ require 'includes/functions.php';
                             </div>
                             <div class="form-group">
                                 <label for="value">Value</label>
-                                <input type="text" class="form-control" id="value"  name="value" placeholder="Value">
+                                <input type="text" class="form-control" id="value" name="value" placeholder="Value">
                             </div>
                         </div>
                         <!-- /.box-body -->
@@ -125,3 +125,25 @@ require 'includes/functions.php';
         </div>
     </section>
 </div>
+<script type="application/javascript">
+
+    function processfrom() {
+        if($("#addConfigForm").valid())
+            return true;
+        return false;
+    }
+
+    $("#addConfigForm").validate({
+        rules: {
+            module: "required",
+            parameter: "required",
+            value: "required"
+        },
+        messages: {
+            module: "Please select module.",
+            parameter: "Please select parameter.",
+            value: "Please enter value."
+        }
+    });
+
+</script>
