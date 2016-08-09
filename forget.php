@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     if (!$mail->send()) {
       echo "Mailer Error: " . $mail->ErrorInfo;
       ?>
-      <script>alert("Something went wrong Contact us support@oncall.com");</script>
+      <script>alert("Something went wrong Contact us support@oncall.com");location.replace("login.php");</script>
       <?php
 
     } else {
@@ -60,7 +60,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
   else
   {
     ?>
-    <script>alert("Your email not found");</script>
+    <script>alert("Your email not found" ); </script>
     <?php
   }
 

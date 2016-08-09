@@ -127,6 +127,7 @@ if(isset($_SESSION['on_call_u_id']))
 <script type="application/javascript">
 
   function processfrom() {
+
     if($("#settingForm").valid())
       return true;
     return false;
@@ -140,7 +141,7 @@ if(isset($_SESSION['on_call_u_id']))
       cur_password: { required: true, normalizer: function( value ) { return $.trim( value ); } },
       password : {
         minlength: 10,
-      }
+      },
       cPassword: {
         minlength: 10,
         equalTo: "#password"
@@ -153,7 +154,7 @@ if(isset($_SESSION['on_call_u_id']))
       cur_password: "Please provide a password",
       password: {
         minlength: "Your password must be at least 10 characters long"
-      }
+      },
       cPassword: {
         minlength: "Your password must be at least 10 characters long",
         equalTo: "Please enter the same password as above"
