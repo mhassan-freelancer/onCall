@@ -80,15 +80,29 @@ include 'header.php';
 
   $("#loginForm").validate({
     rules: {
-      username: "required",
-      password : "required"
+      username: {
+        required: {
+          depends:function(){
+            $(this).val($.trim($(this).val()));
+            return true;
+          }
+        }
+      },
+      password : {
+        required: {
+          depends:function(){
+            $(this).val($.trim($(this).val()));
+            return true;
+          }
+        }
+      }
     },
     messages: {
       username: "Please enter a username",
       password: "Please provide a password",
     }
   });
-    
+
 </script>
 </body>
 </html>

@@ -159,9 +159,9 @@ if(!v::intVal()->min(1,true)->validate($configId))
 
     $("#editConfigForm").validate({
         rules: {
-            module: "required",
-            parameter: "required",
-            value: "required"
+            module: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
+            parameter: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
+            value: { depends:function(){ $(this).val($.trim($(this).val())); return true;} }
         },
         messages: {
             module: "Please select module.",

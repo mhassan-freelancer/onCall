@@ -124,9 +124,9 @@ Add Users
 
     $("#addUserForm").validate({
         rules: {
-            firstname: "required",
-            lastname: "required",
-            username: "required",
+            firstname: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
+            lastname: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
+            username: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
             email: {
                 required: true,
                 email: true

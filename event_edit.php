@@ -118,7 +118,7 @@ if(!v::intVal()->min(1,true)->validate($eventId))
 
     $("#editEventForm").validate({
         rules: {
-            event: "required"
+            event: { depends:function(){ $(this).val($.trim($(this).val())); return true;} }
         },
         messages: {
             event: "Please enter event text."

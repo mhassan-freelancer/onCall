@@ -134,10 +134,10 @@ if(isset($_SESSION['on_call_u_id']))
 
   $("#settingForm").validate({
     rules: {
-      firstname: "required",
-      lastname: "required",
-      username: "required",
-      cur_password: "required",
+      firstname: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
+      lastname: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
+      username: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
+      cur_password: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
       password : {
         minlength: 10,
       }
