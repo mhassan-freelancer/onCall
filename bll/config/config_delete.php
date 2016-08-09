@@ -1,7 +1,8 @@
-<?php session_start();
+<?php
+require ("../../session_protect.php");
+require ("../../role_check_administrator.php");
 require("../../includes/Db.class.php");
 require  '../../vendor/autoload.php';
-
 require '../../includes/PasswordStorage.php';
 require ('../../includes/config.php');
 

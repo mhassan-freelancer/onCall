@@ -1,9 +1,10 @@
 <?php
 include 'session_protect.php';
+include 'role_check_administrator.php';
 include 'header.php';
 include 'header_loggedin.php';
 require __DIR__.'/includes/functions.php';
-print_r($_SESSION);
+
 $moduleid = 0;
 if(isset($_GET['moduleid']))
 {

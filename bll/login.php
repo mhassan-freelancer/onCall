@@ -48,6 +48,8 @@ if($person)
         $_SESSION['on_call_u_id'] = $person['id'];
         $_SESSION['on_call_u_username'] = $person['username'];
         $_SESSION['on_call_u_firstname']= $person['first_name'];
+        $_SESSION['on_call_is_admin']= $person['admin'];
+        $_SESSION['on_call_is_super_admin']= $person['administrator'];
         $rep = array("message"=>"success" );
         return print json_encode($rep);
     }

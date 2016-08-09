@@ -1,12 +1,6 @@
-<?php include 'session_protect.php';
-
-if(isset($_SESSION['on_call_u_id']))
-{
-
-}
-else {
-    //header("location:/login.php?error=loginrequired");
-}
+<?php
+include 'session_protect.php';
+include 'role_check_admin.php';
 include 'header.php';
 include 'header_loggedin.php';
 require 'includes/functions.php';

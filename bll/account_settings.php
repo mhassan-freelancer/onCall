@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+require ("../session_protect.php");
 require("../includes/Db.class.php");
 require  '../vendor/autoload.php';
 require '../includes/PasswordStorage.php';

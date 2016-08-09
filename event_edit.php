@@ -1,4 +1,9 @@
-<?php include 'session_protect.php';
+<?php
+include 'session_protect.php';
+include 'role_check_administrator.php';
+include 'header.php';
+include 'header_loggedin.php';
+require 'includes/functions.php';
 
 $eventId= 0;
 if(isset($_GET['id']))
@@ -19,16 +24,7 @@ if(!v::intVal()->min(1,true)->validate($eventId))
     $_SESSION['error'] ="Invalid Event ID.";
     header('location:/onCall/events.php');
 }
-if(isset($_SESSION['on_call_u_id']))
-{
 
-}
-else {
-    //header("location:/login.php?error=loginrequired");
-}
-include 'header.php';
-include 'header_loggedin.php';
-require 'includes/functions.php';
 ?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->

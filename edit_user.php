@@ -1,4 +1,7 @@
-<?php include 'session_protect.php';
+<?php
+include 'session_protect.php';
+include 'role_check_admin.php';
+
 $userid= 0;
 if(isset($_GET['id']))
 {

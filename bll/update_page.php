@@ -1,6 +1,8 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
+require ("../session_protect.php");
+require ("../role_check_administrator.php");
 require (__DIR__."/../session_protect.php");
 require (__DIR__."/../includes/functions.php");
 $db = new DB();

@@ -1,4 +1,6 @@
-<?php session_start();
+<?php
+require ("../session_protect.php");
+require ("../role_check_administrator.php");
 require("../includes/Db.class.php");
 require  '../vendor/autoload.php';
 
@@ -20,14 +22,15 @@ if($parameterObj != null)
     $db->bind("parameterId", $parameterId);
     $db->query("DELETE FROM parameters WHERE parameter_id = :parameterId ");
 
-    $db->bind("value", $parameterObj['parameter']);
-    $configParameter = $db->row("Select id FROM config WHERE parameter = UCASE(:value)");
-    if($configParameter != null) {
-        $db->bind("configId", $configParameter['id']);
-        $db->query("DELETE FROM config WHERE id = :configId ");
-    }
+    $db->bind("parameterId", $parameterId);
+    $db->query("DELETE FROM config WHERE parameter_id = :parameterId ");
+//    $configParameter = $db->row("Select id FROM config WHERE parameter_id = parameterId");
+//    if($configParameter != null) {
+//        $db->bind("configId", $configParameter['id']);
+//        $db->query("DELETE FROM config WHERE parameter_id = parameterId ");
+//    }
 
-    $_SESSION['success'] ="Parameter Deleted Successfully";
+    $_SESSION['success'] = "Parameter Deleted Successfully";
     header('location:'.BASE_URL.'parameters.php');
     exit();
 }

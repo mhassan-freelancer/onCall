@@ -1,5 +1,6 @@
 <?php 
 require ("../session_protect.php");
+require ("../role_check_admin.php");
 require ('../includes/functions.php');
 // require("../includes/Db.class.php");
 require  '../vendor/autoload.php';
