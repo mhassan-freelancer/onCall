@@ -10,11 +10,12 @@ require __DIR__.'/../includes/PasswordStorage.php';
 
 $db = new DB();
 use Respect\Validation\Validator as v;
- $useremail = $_POST['username'];
+ $username = $_POST['username'];
  $password= $_POST['password'];
 
 $error = false;
-if(!v::email()->validate($useremail))
+$alphanumeric = v::alnum();
+if(!$alphanumeric->validate($username))
 {
     $error = true;
 }
@@ -27,14 +28,14 @@ if(!$passwordValidator->validate($password))
 if($error)
 {
     $rep = array("message"=>"Wrong input" );
-      print json_encode($rep);
+    return print json_encode($rep);
 }
 
 $nullValidator = v::nullType();
 
-$db->bind("email",$useremail);
+$db->bind("username",$username);
 
-$person = $db->row("select * from user where email = :email and enabled=1 ");
+$person = $db->row("select * from user where username = :username and enabled=1 ");
 if($person)
 {
 
@@ -48,17 +49,17 @@ if($person)
         $_SESSION['on_call_u_username'] = $person['username'];
         $_SESSION['on_call_u_firstname']= $person['first_name'];
         $rep = array("message"=>"success" );
-        print json_encode($rep);
+        return print json_encode($rep);
     }
     else
     {
         $rep = array("message"=>"Invalid Email or Password" );
-        return  print json_encode($rep);
+        return print json_encode($rep);
     }
 }
 else
 {
     $rep = array("message"=>"Your Account is blocked" );
-    return  print json_encode($rep);
+    return print json_encode($rep);
 }
 ?>

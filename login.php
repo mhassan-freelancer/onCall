@@ -18,10 +18,10 @@ include 'header.php';
                 <form class="form-horizontal">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                      <label for="username" class="col-sm-2 control-label">Username</label>
 
                       <div class="col-sm-10">
-                        <input id="username" type="email" class="form-control" id="inputEmail3" placeholder="Email" >
+                        <input type="text" class="form-control" id="username" placeholder="Username" >
                       </div>
                     </div>
                     <div class="form-group">
@@ -106,12 +106,12 @@ include 'header.php';
           data:{username:username,password:password},
           success:function (data) {
             console.log(data);
+
+
             data = JSON.parse(data);
             if(data.message == "success")
             {
               window.location.href = "index.php";
-
-
             }
             else {
               alert(data.message);
