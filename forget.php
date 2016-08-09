@@ -16,6 +16,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
 
   require 'includes/PasswordStorage.php';
   require ('includes/functions.php');
+  include 'includes/config.php';
   $db = new DB();
   $password = generateStrongPassword(8);
   $hash = PasswordStorage::create_hash($password);
@@ -27,7 +28,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     $db->bind("password",$hash );
     $db->query("update user set password =:password where email = :email");
 
-    require PHP_MAILER;
+    require __DIR__.PHP_MAILER;
     $mail = new PHPMailer;
     $mail->isSMTP();
     //$mail->SMTPDebug = 2;
@@ -50,10 +51,17 @@ if($_SERVER['REQUEST_METHOD']=="POST")
 
     } else {
       ?>
-      <script>alert("Check your email");</script>
+      <script>alert("Check your email"); location.replace("login.php");</script>
+
       <?php
     }
 
+  }
+  else
+  {
+    ?>
+    <script>alert("Your email not found");</script>
+    <?php
   }
 
 
