@@ -80,7 +80,7 @@ if(isset($_SESSION['on_call_u_id']))
           </div>
           <!-- /.box-header -->
           <!-- form start -->
-          <form role="form" method="post" action="bll/account_settings.php">
+          <form id="settingForm" role="form" method="post" action="bll/account_settings.php" onsubmit="return processfrom();">
             <div class="box-body">
               <input type="hidden" name="userId" id="userId" value="<?php echo $userinfo['id'] ?>">
               <div class="form-group">
@@ -124,3 +124,41 @@ if(isset($_SESSION['on_call_u_id']))
     </div>
   </section>
 </div>
+<script type="application/javascript">
+
+  function processfrom() {
+    if($("#settingForm").valid())
+      return true;
+    return false;
+  }
+
+  $("#settingForm").validate({
+    rules: {
+      firstname: "required",
+      lastname: "required",
+      username: "required",
+      cur_password: "required",
+      password : {
+        minlength: 10,
+      }
+      cPassword: {
+        minlength: 10,
+        equalTo: "#password"
+      }
+    },
+    messages: {
+      firstname: "Please enter your firstname",
+      lastname: "Please enter your lastname",
+      username: "Please enter a username",
+      cur_password: "Please provide a password",
+      password: {
+        minlength: "Your password must be at least 10 characters long"
+      }
+      cPassword: {
+        minlength: "Your password must be at least 10 characters long",
+        equalTo: "Please enter the same password as above"
+      }
+    }
+  });
+
+</script>

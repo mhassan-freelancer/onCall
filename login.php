@@ -1,12 +1,8 @@
 <?php session_start();
 include 'header.php';
-
 ?>
 <body class="hold-transition skin-green sidebar-mini">
 <div class="container">
-
-
-
 <div class="row loginform" >
     <div class="col-md-3"></div>
     <div class=" col-md-6">
@@ -15,20 +11,19 @@ include 'header.php';
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal">
+                <form id="loginForm" class="form-horizontal" onsubmit="return processform();">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="username" class="col-sm-2 control-label">Username</label>
-
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="username" placeholder="Username" >
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" >
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                      <label for="password" class="col-sm-2 control-label">Password</label>
 
                       <div class="col-sm-10">
-                        <input id="password" type="password" class="form-control" id="inputPassword3" placeholder="Password" >
+                        <input id="password" type="password" class="form-control" name="password" placeholder="Password" >
                       </div>
                     </div>
                     <div class="form-group">
@@ -45,7 +40,7 @@ include 'header.php';
                   <!-- /.box-body -->
                   <div class="box-footer">
                     <button type="submit" class="btn btn-default">Cancel</button>
-                    <button id="userLogin" type="button" class="btn btn-success pull-right">Login</button>
+                    <button id="userLogin" type="submit" class="btn btn-success pull-right">Login</button>
                   </div>
                   <!-- /.box-footer -->
                 </form>
@@ -55,80 +50,45 @@ include 'header.php';
 
 </div>
 </div>
-  <!-- /.content-wrapper -->
- 
 
-  <!-- Control Sidebar -->
- 
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
+  <script type="application/javascript">
 
+      function processform() {
+        if($("#loginForm").valid()) {
+          var username = $.trim($("#username").val());
+          var password = $.trim($("#password").val());
 
-
-
-
-
-
-
-<!-- ./wrapper -->
-<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
-<script>
-
-  $(document).ready(function () {
-    $("#userLogin").click(function () {
-
-      $(this).prop('disabled', true)
-
-      var username = $("#username").val();
-      var password = $("#password").val();
-      var error = false;
-      if(username  == "" || username == null)
-      {
-        error = true;
-      }
-      if(password == "" || password == null)
-      {
-        error = true;
-      }
-      if(error)
-      {
-        alert("Kindly fill the username and password");
+          $.ajax({
+            url:"bll/login.php",
+            type:"POST",
+            data:{username:username,password:password},
+            success:function (data) {
+              console.log(data);
+              data = JSON.parse(data);
+              if(data.message == "success")
+              {
+                window.location.href = "index.php";
+              }
+              else {
+                alert(data.message);
+              }
+            }
+          });
+        }
         return false;
       }
-      else
-      {
 
-        $(this).prop('disabled', false)
-        $.ajax({
-          url:"bll/login.php",
-          type:"POST",
-          data:{username:username,password:password},
-          success:function (data) {
-            console.log(data);
-
-
-            data = JSON.parse(data);
-            if(data.message == "success")
-            {
-              window.location.href = "index.php";
-            }
-            else {
-              alert(data.message);
-            }
-          }
-        });
-      }
-    });
-  })
+  $("#loginForm").validate({
+    rules: {
+      username: "required",
+      password : "required"
+    },
+    messages: {
+      username: "Please enter a username",
+      password: "Please provide a password",
+    }
+  });
+    
 </script>
-
-
-
-<script src="bootstrap/js/bootstrap.min.js"></script>
-
-
-
-
 </body>
 </html>
