@@ -75,6 +75,7 @@
 
     <!-- Validate -->
     <script src="plugins/validate/jquery.validate.min.js"></script>
+    <script src="plugins/validate/additional-methods.min.js"></script>
     <link rel="stylesheet" href="plugins/validate/css/screen.css">
     <!-- DataTables -->
     <script src="plugins/datatables/jquery.dataTables.min.js"></script>

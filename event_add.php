@@ -101,7 +101,7 @@ require 'includes/functions.php';
 
     $("#addEventForm").validate({
         rules: {
-            event: { depends:function(){ $(this).val($.trim($(this).val())); return true;} }
+            event: { required: true, normalizer: function( value ) { return $.trim( value ); } }
         },
         messages: {
             event: "Please enter event text."

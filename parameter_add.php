@@ -132,9 +132,9 @@ require 'includes/functions.php';
 
     $("#addParameterForm").validate({
         rules: {
-            parameter: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
-            label: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
-            data_type: { depends:function(){ $(this).val($.trim($(this).val())); return true;} }
+            parameter: { required: true, normalizer: function( value ) { return $.trim( value ); } },
+            label: { required: true, normalizer: function( value ) { return $.trim( value ); } },
+            data_type: { required: true, normalizer: function( value ) { return $.trim( value ); } }
         },
         messages: {
             parameter: "Please enter parameter.",

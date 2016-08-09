@@ -81,20 +81,10 @@ include 'header.php';
   $("#loginForm").validate({
     rules: {
       username: {
-        required: {
-          depends:function(){
-            $(this).val($.trim($(this).val()));
-            return true;
-          }
-        }
+        required: true, normalizer: function( value ) { return $.trim( value ); }
       },
       password : {
-        required: {
-          depends:function(){
-            $(this).val($.trim($(this).val()));
-            return true;
-          }
-        }
+        required: true, normalizer: function( value ) { return $.trim( value ); }
       }
     },
     messages: {

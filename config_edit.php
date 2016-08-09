@@ -159,9 +159,9 @@ if(!v::intVal()->min(1,true)->validate($configId))
 
     $("#editConfigForm").validate({
         rules: {
-            module: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
-            parameter: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
-            value: { depends:function(){ $(this).val($.trim($(this).val())); return true;} }
+            module: { required: true, normalizer: function( value ) { return $.trim( value ); } },
+            parameter: { required: true, normalizer: function( value ) { return $.trim( value ); } },
+            value: { required: true, normalizer: function( value ) { return $.trim( value ); } }
         },
         messages: {
             module: "Please select module.",
