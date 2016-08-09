@@ -169,9 +169,9 @@ if(!v::intVal()->min(1,true)->validate($parameterId))
 
     $("#editParameterForm").validate({
         rules: {
-            parameter: "required",
-            label: "required",
-            data_type: "required"
+            parameter: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
+            label: { depends:function(){ $(this).val($.trim($(this).val())); return true;} },
+            data_type: { depends:function(){ $(this).val($.trim($(this).val())); return true;} }
         },
         messages: {
             parameter: "Please enter parameter.",
