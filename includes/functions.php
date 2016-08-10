@@ -543,5 +543,38 @@ function getCriticalUnits()
 	$criticalUnits = $db->single("select count(*) as 'criticalUnits' from radio_units Where critical = 1");
 	return $criticalUnits;
 }
+function getEventLists()
+{
+	$db = new DB();
+	return $db->query("select * from events");
+}
+function getSystemDetails()
+{
+	$db = new DB();
+	return $db->query("select * from radio_events as re INNER  JOIN  events as ev on re.event_id = ev.id");
+}
+function getRadioEventBySearialNumber($query)
+{
+	$db = new DB();
+	$db->bind("query",$query);
+	$data = $db->query("Select * from radio_events where radio_unit_serial like %:query%");
+	if(!$data)
+	{
+		$db->bind("query",$query);
+		$getSearial = $db->row("select * from radio_units where unit_name like %:query% ");
+
+		if($getSearial)
+		{
+			$db->bind("query",$getSearial['serial']);
+			$data = $db->query("Select * from radio_events where radio_unit_serial like %:query%");
+			return $data;
+		}
+		else{
+		}
+	}
+	else{
+		return $data;
+	}
+}
 
 ?>
