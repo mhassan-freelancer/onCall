@@ -14,7 +14,7 @@ if(isset($_GET['id']))
     $configId = $_GET['id'];
 
 $db->bind("configId", $configId);
-$configObj = $db->row("select parameter from config where id = :configId");
+$configObj = $db->row("select parameter_id from config where id = :configId");
 
 if($configObj != null)
 {

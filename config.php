@@ -93,7 +93,7 @@ include 'header_loggedin.php';
                       echo '<td>'.$config['value'].'</td>';
                       echo '<td>'.$config['label'].'</td>';
                       echo '<td><a class="btn btn-danger" href="config_edit.php?id='.$config['id'].'">Update</a> 
-                      <a href="/onCall/bll/config/config_delete.php?id='.$config['id'].'" class="btn btn-default">Delete</a></td></tr>';
+                      <a href="bll/config/config_delete.php?id='.$config['id'].'" class="btn btn-default">Delete</a></td></tr>';
                     }
                     ?>
                   </tbody>

@@ -90,7 +90,7 @@ include 'header_loggedin.php';
                       echo '<td>'.$parameter['data_type'].'</td>';
                       echo '<td>'.$parameter['data_type_values'].'</td>';
                       echo '<td><a class="btn btn-danger" href="parameter_edit.php?id='.$parameter['parameter_id'].'">Update</a> 
-                      <a href="/onCall/bll/parameter_delete.php?id='.$parameter['parameter_id'].'" class="btn btn-default">Delete</a></td></tr>';
+                      <a href="bll/parameter_delete.php?id='.$parameter['parameter_id'].'" class="btn btn-default">Delete</a></td></tr>';
                     }
                     ?>
                   </tbody>

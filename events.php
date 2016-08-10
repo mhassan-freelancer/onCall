@@ -90,7 +90,7 @@ include 'header_loggedin.php';
                       echo '<tr>';
                       echo '<td>'.$event['text'].'</td>';
                       echo '<td><a class="btn btn-danger" href="event_edit.php?id='.$event['id'].'">Update</a> 
-                      <a href="/onCall/bll/events/event_delete.php?id='.$event['id'].'" class="btn btn-default">Delete</a></td></tr>';
+                      <a href="bll/events/event_delete.php?id='.$event['id'].'" class="btn btn-default">Delete</a></td></tr>';
                     }
                     ?>
                   </tbody>
