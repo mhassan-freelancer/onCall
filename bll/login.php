@@ -10,8 +10,8 @@ require __DIR__.'/../includes/PasswordStorage.php';
 
 $db = new DB();
 use Respect\Validation\Validator as v;
- $username = $_POST['username'];
- $password= $_POST['password'];
+$username = $_POST['username'];
+$password= $_POST['password'];
 
 $error = false;
 $alphanumeric = v::alnum();

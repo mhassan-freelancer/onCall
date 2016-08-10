@@ -1,4 +1,7 @@
 <?php session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
 include 'header.php';
 require  'vendor/autoload.php';
 use Respect\Validation\Validator as v;
