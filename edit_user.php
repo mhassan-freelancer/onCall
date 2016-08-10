@@ -138,7 +138,6 @@ Edit User
                                     if($userinfo['enabled']== 1)
                                     {?>
                                         <input type='hidden' value='0' name='isenabled'>
-
                                         <input type="checkbox" name="isenabled"  value="1" checked="checked"  /> Enabled
                                         <?php
                                     }
@@ -147,21 +146,28 @@ Edit User
                                         <input type="checkbox" name="isenabled" value="1" /> Enabled
                                         <?php
                                     }
-                                echo '</label><label>';
+                                echo '</label> &nbsp; <label>';
                                     if($userinfo['admin']== 1)
                                     {
                                         echo  '<input type="hidden" value="0" name="isadmin">';
                                         echo '<br /><input type="checkbox" name="isadmin"  value="1" checked="checked"  /> Admin';
-
-                                    }else
+                                    }
+                                    else
                                     {
                                         echo '<br /><input type="checkbox" name="isadmin" value="1" /> Admin';
                                     }
-
-
                                     ?>
-
-
+                                </label> <br /> <label>
+                                    <?php if($userinfo['alarm']== 1)
+                                    {?>
+                                        <input type='hidden' value='0' name='oncall'>
+                                        <input type="checkbox" name="oncall"  value="1" checked="checked" /> OnCall
+                                    <?php
+                                    }
+                                    else
+                                    { ?>
+                                        <input type="checkbox" name="oncall" value="1" /> Alarm
+                                    <?php } ?>
                                 </label>
                             </div>
 

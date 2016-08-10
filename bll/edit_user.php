@@ -15,6 +15,8 @@ $moudleId = 0;
 $isadmin = 0;
 $userid = 0;
 $isenabled = 0;
+$oncall = 0;
+
 if(isset($_POST['firstname']))
      $firstname = $_POST['firstname'];
 if(isset($_POST['lastname']))
@@ -31,9 +33,8 @@ if(isset($_POST['id']))
     $userid = $_POST['id'];
 if(isset($_POST['isenabled']))
     $isenabled = $_POST['isenabled'];
-
-
-
+if(isset($_POST['oncall']))
+    $oncall = $_POST['oncall'];
 
 $error = false;
 $errorArray = array();
@@ -97,10 +98,10 @@ else{
         $db->bind("email", $email);
         $db->bind("enabled", (string)$isenabled);
         $db->bind("isadmin", (string)$isadmin);
+        $db->bind("oncall", (string)$oncall);
 
-
-        $db->query("UPDATE user set first_name = :first_name, last_name = :last_name, username = :username , email =:email , enabled = :enabled , admin = :isadmin  
-              where id = :userId");
+        $db->query("UPDATE user set first_name = :first_name, last_name = :last_name, username = :username ,
+        email =:email , enabled = :enabled , admin = :isadmin, alarm = :oncall where id = :userId");
 
 
         $_SESSION['success'] ="User Update Successfully";

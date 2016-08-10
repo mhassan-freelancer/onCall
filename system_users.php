@@ -76,38 +76,27 @@ include 'header_loggedin.php';
                 <tr>
                   <th>User</th>
                   <th>Enabled</th>
-                  <th>OnCall</th>
+                  <th>Alarm</th>
                   <th>Admin</th>
                   <th>Options</th>
-                  
                 </tr>
                 </thead>
                 <tbody>
                 <?php
-
                 foreach ($users as $user)
                 {
                   echo '<tr>';
                   echo '<td>'.$user['username'].'</td>';
                   echo '<td>'.$user['enabled'].'</td>';
-                  echo '<td>'.getModuleName($user['alarm']).'</td>';
+                  echo '<td>'.$user['alarm'].'</td>';
                   echo '<td>'.$user['admin'].'</td>';
                   echo '<td><a class="btn btn-danger" href="edit_user.php?id='.$user['id'].'">Update</a> 
-                  <a href="/bll/delete_user.php?id='.$user['id'].'" class="btn btn-default">Disable</a></td></tr>';
+                  <a href="bll/delete_user.php?id='.$user['id'].'" class="btn btn-default">Disable</a></td></tr>';
                 }
                 ?>
-
-                 
-                
-                  
-               
-
-                  
                 </tfoot>
               </table>
             </div>
-
-
             <!-- /.box-body -->
       </div>
        <a style="width: 150px; height: 50px; font-size: 16px;" class="btn btn-success" href="add_user.php">Add new user</a>
