@@ -11,8 +11,9 @@ $db = new DB();
 use Respect\Validation\Validator as v;
 
 $firstname =  $lastname = $username = $email = $password ="";
-
 $isadmin = false;
+$oncall = false;
+
 if(isset($_POST['firstname']))
      $firstname = $_POST['firstname'];
 if(isset($_POST['lastname']))
@@ -23,7 +24,8 @@ if(isset($_POST['email']))
      $email = $_POST['email'];
 if(isset($_POST['isadmin']))
       $isadmin = $_POST['isadmin'];
-
+if(isset($_POST['oncall']))
+    $oncall = $_POST['oncall'];
 
 $error = false;
 $errorArray = array();
@@ -76,10 +78,15 @@ else{
         {
             $isadmin = 1;
         }
+        if($oncall == "on")
+        {
+            $oncall = 1;
+        }
         $db->bind("isadmin",$isadmin);
+        $db->bind("oncall",$oncall);
 
-        $db->query("Insert into user (first_name,last_name,email,username,password,enabled,admin)VALUES (
-                                  :firstname,:lastname,:email,:username,:password,1,:isadmin)");
+        $db->query("Insert into user (first_name, last_name, email, username, password, enabled, admin, alarm) VALUES (
+                                  :firstname, :lastname, :email, :username, :password, 1, :isadmin, :oncall)");
 
         require PHP_MAILER;
         $mail = new PHPMailer;

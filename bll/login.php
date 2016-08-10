@@ -50,6 +50,7 @@ if($person)
         $_SESSION['on_call_u_firstname']= $person['first_name'];
         $_SESSION['on_call_is_admin']= $person['admin'];
         $_SESSION['on_call_is_super_admin']= $person['administrator'];
+        $_SESSION['on_call_is_oncall']= $person['alarm'];
         $rep = array("message"=>"success" );
         return print json_encode($rep);
     }

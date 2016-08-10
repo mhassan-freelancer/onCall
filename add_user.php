@@ -96,10 +96,14 @@ Add Users
                                 <label for="email">Email address</label>
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Enter email" >
                             </div>
-
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="isadmin"> Admin
+                                    <input type="checkbox" name="isadmin" id="isadmin"> Admin
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="oncall" id="oncall"> Alarm
                                 </label>
                             </div>
                         </div>

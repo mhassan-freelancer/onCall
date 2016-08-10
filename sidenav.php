@@ -16,13 +16,21 @@ else if ($_SESSION['on_call_is_admin'] == 1)
 {
     ?>
     <li><a href="system_users.php"><i class="fa fa-circle-o text-yellow"></i> <span>User Manager</span></a></li>
-
+    <li><a href="system_details.php"><i class="fa fa-circle-o text-red"></i> <span>Alarm</span></a></li>
     <li><a href="account_settings.php"><i class="fa fa-circle-o text-yellow"></i> <span>My Account</span></a></li>
 
     <?php
-} else {
+}
+else if ($_SESSION['on_call_is_oncall'] == 1)
+{
     ?>
+    <li><a href="system_details.php"><i class="fa fa-circle-o text-red"></i> <span>Alarm</span></a></li>
     <li><a href="account_settings.php"><i class="fa fa-circle-o text-yellow"></i> <span>My Account</span></a></li>
     <?php
 }
-?>
+else
+{
+    ?>
+    <li><a href="account_settings.php"><i class="fa fa-circle-o text-yellow"></i> <span>My Account</span></a></li>
+    <?php
+}?>

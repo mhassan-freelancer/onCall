@@ -1,6 +1,6 @@
 <?php
 include 'session_protect.php';
-include 'role_check_administrator.php';
+include 'role_check_oncall_user.php';
 include 'header.php';
 include 'header_loggedin.php';
 require 'includes/functions.php';
