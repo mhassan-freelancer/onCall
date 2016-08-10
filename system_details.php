@@ -7,7 +7,7 @@ require 'includes/functions.php';
 $sdetaisl = null;
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
-   echo $query  = $_POST['query'];
+    $query  = $_POST['query'];
     if($query != "")
     $sdetaisl = getRadioEventBySearialNumber($query);
     else
@@ -37,7 +37,7 @@ else
             <form method="post">
                 <div class="form-group">
                     <label>Search</label>
-                    <input id="topsearch" type="text" name="query" class="form-control" placeholder="Search">
+                    <input type="text" name="query" class="form-control" placeholder="Search">
 
                 </div>
 
