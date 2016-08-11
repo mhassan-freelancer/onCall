@@ -35,34 +35,38 @@ $nullValidator = v::nullType();
 
 $db->bind("username",$username);
 
-$person = $db->row("select * from user where username = :username and enabled=1 ");
+$person = $db->row("select * from user where username = :username ");
 if($person)
 {
-
-    $isvaliduser = PasswordStorage::verify_password($password, $person['password']);
-
-
-    if(!$nullValidator->validate($person) && $isvaliduser)
-    {
-        session_start();
-        $_SESSION['on_call_u_id'] = $person['id'];
-        $_SESSION['on_call_u_username'] = $person['username'];
-        $_SESSION['on_call_u_firstname']= $person['first_name'];
-        $_SESSION['on_call_is_admin']= $person['admin'];
-        $_SESSION['on_call_is_super_admin']= $person['administrator'];
-        $_SESSION['on_call_is_oncall']= $person['alarm'];
-        $rep = array("message"=>"success" );
-        return print json_encode($rep);
+    if($person['enabled'] == 1) {
+        $isvaliduser = PasswordStorage::verify_password($password, $person['password']);
+        if(!$nullValidator->validate($person) && $isvaliduser)
+        {
+            session_start();
+            $_SESSION['on_call_u_id'] = $person['id'];
+            $_SESSION['on_call_u_username'] = $person['username'];
+            $_SESSION['on_call_u_firstname']= $person['first_name'];
+            $_SESSION['on_call_is_admin']= $person['admin'];
+            $_SESSION['on_call_is_super_admin']= $person['administrator'];
+            $_SESSION['on_call_is_oncall']= $person['alarm'];
+            $rep = array("message"=>"success" );
+            return print json_encode($rep);
+        }
+        else
+        {
+            $rep = array("message" => "Username or Password is invalid");
+            return print json_encode($rep);
+        }
     }
     else
     {
-        $rep = array("message"=>"Invalid Email or Password" );
+        $rep = array("message" => "You account has been deactivated, Please consult your admin.");
         return print json_encode($rep);
     }
 }
 else
 {
-    $rep = array("message"=>"Your Account is blocked" );
+    $rep = array("message" => "Username or Password is invalid");
     return print json_encode($rep);
 }
 ?>

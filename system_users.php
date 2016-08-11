@@ -90,7 +90,7 @@ include 'header_loggedin.php';
                   /* echo '<td>'.$user['enabled'].'</td>';
                   echo '<td>'.$user['alarm'].'</td>';
                   echo '<td>'.$user['admin'].'</td>'; */
-                  echo $user['enabled'] == 0 ? '<td> OFF </td>' : '<td> ON </td>';
+                  echo $user['enabled'] == 0 ? '<td> Disable </td>' : '<td> Enable </td>';
                   echo $user['alarm'] == 0 ? '<td> OFF </td>' : '<td> ON </td>';
                   echo $user['admin'] == 0 ? '<td> OFF </td>' : '<td> ON </td>';
                   echo '<td><a class="btn btn-danger" href="edit_user.php?id='.$user['id'].'">Update</a> 

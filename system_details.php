@@ -8,10 +8,11 @@ $sdetaisl = null;
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $query  = $_POST['query'];
-    if($query != "")
-    $sdetaisl = getRadioEventBySearialNumber($query);
+    $dateRange  = $_POST['date-range'];
+    if($query != "" || $dateRange != "")
+        $sdetaisl = getRadioEventBySearialNumber($query, $dateRange);
     else
-    $sdetaisl = (getSystemDetails());
+        $sdetaisl = (getSystemDetails());
 }
 else
 {
@@ -25,8 +26,8 @@ else
     <!-- Content Header (Page header) -->
 
 
-  
-      
+
+
 
       <div class="container-fluid">
 
@@ -37,8 +38,35 @@ else
             <form method="post">
                 <div class="form-group">
                     <label>Search</label>
-                    <input type="text" name="query" class="form-control" placeholder="Search">
+                    <?php
+                    $units = getUnits();
+                    ?>
+                    <?php
+                    $units = getUnits();
+                    ?>
+                    <select name="query" class="form-control select2" style="width: 100%;">
 
+                        <option value="">Please Select Unit</option>
+                        <?php
+                        foreach ($units as $unit)
+                        {
+                            echo '<option  value="'.$unit['serial'].'">'.$unit['unit_name'].'</option>';
+                            echo '<option  value="'.$unit['serial'].'">'.$unit['serial'].'</option>';
+                        }
+                        ?>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Date range</label>
+
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" class="form-control pull-right" id="date-range" name="date-range">
+                    </div>
+                    <!-- /.input group -->
                 </div>
 
                 <button type="submit" style="width:100px" class="btn btn-success mt-50 text-center pull-left">
@@ -48,19 +76,7 @@ else
 
             
            </div>
-           <div class="col-md-4">
-              <div class="form-group">
-                <label>Date range</label>
 
-                <div class="input-group">
-                  <div class="input-group-addon">
-                    <i class="fa fa-calendar"></i>
-                  </div>
-                  <input type="text" class="form-control pull-right" id="reservation">
-                </div>
-                <!-- /.input group -->
-              </div>
-           </div>
            <div class="col-md-4">
 
           
@@ -136,15 +152,18 @@ else
                 </thead>
                 <tbody>
                 <?php
-                foreach ($sdetaisl as $detail)
+                if($sdetaisl != null)
                 {
-                    echo '<tr>';
-                    echo '<td>'.$detail['event_id'].'</td>';
-                    echo '<td>'.$detail['text'].'</td>';
-                    echo '<td>'.$detail['repairshpr_ticket_number'].'</td>';
-                    echo '<td>'.$detail['notification_time'].'</td>';
-                    echo '<td>'.$detail['repairshpr_ticket_status'].'</td>';
-                    echo '</tr>';
+                    foreach ($sdetaisl as $detail)
+                    {
+                        echo '<tr>';
+                        echo '<td>'.$detail['event_id'].'</td>';
+                        echo '<td>'.$detail['text'].'</td>';
+                        echo '<td>'.$detail['repairshpr_ticket_number'].'</td>';
+                        echo '<td>'.$detail['notification_time'].'</td>';
+                        echo '<td>'.$detail['repairshpr_ticket_status'].'</td>';
+                        echo '</tr>';
+                    }
                 }
                 ?>
                 </tbody>
@@ -289,37 +308,8 @@ else
   $(function () {
     //Initialize Select2 Elements
     $(".select2").select2();
-
-
     //Date range picker
-    $('#reservation').daterangepicker();
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-        {
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment()
-        },
-        function (start, end) {
-          $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        }
-    );
-
-
-
-    //Timepicker
-    $(".timepicker").timepicker({
-      showInputs: false
-    });
+    $('#date-range').daterangepicker();
   });
 </script>
 

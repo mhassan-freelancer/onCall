@@ -537,6 +537,11 @@ function getTotalUnits()
 	$totalUnits = $db->single("select count(*) as 'criticalUnits' from radio_units");
 	return $totalUnits;
 }
+function getUnits()
+{
+	$db = new DB();
+	return $db->query("select * from radio_units");
+}
 function getCriticalUnits()
 {
 	$db = new DB();
@@ -553,27 +558,32 @@ function getSystemDetails()
 	$db = new DB();
 	return $db->query("select * from radio_events as re INNER  JOIN  events as ev on re.event_id = ev.id");
 }
-function getRadioEventBySearialNumber($query)
+function getRadioEventBySearialNumber($query, $dateRange)
 {
-
 	$db = new DB();
-	$db->bind("query",$query);
-	$data = $db->query("Select * from radio_events where radio_unit_serial like :query ");
+	$sql = "";
+	if($query != "" && $dateRange != "") {
+		$dateRange = explode(" - ", $dateRange);
+		$db->bind("query",$query);
+		$db->bind("from", date_format(date_create($dateRange[0]),"Y-m-d"));
+		$db->bind("to", date_format(date_create($dateRange[1]),"Y-m-d"));
+		$sql = "SELECT * FROM radio_events as re INNER JOIN  events as ev on re.event_id = ev.id WHERE re.radio_unit_serial = :query AND re.notification_time BETWEEN :from AND :to ";
+	} else if ($query != "") {
+		$db->bind("query",$query);
+		$sql = "SELECT * FROM radio_events as re INNER JOIN  events as ev on re.event_id = ev.id WHERE re.radio_unit_serial = :query";
+	} else if ($dateRange != "") {
+		$dateRange = explode(" - ", $dateRange);
+		$db->bind("from", date_format(date_create($dateRange[0]),"Y-m-d"));
+		$db->bind("to", date_format(date_create($dateRange[1]),"Y-m-d"));
+		$sql = "SELECT * FROM radio_events as re INNER JOIN  events as ev on re.event_id = ev.id WHERE re.notification_time BETWEEN :from AND :to";
+	}
+	$data = $db->query($sql);
 	if(!$data)
 	{
-		$db->bind("query",$query);
-		$getSearial = $db->row("select * from radio_units where unit_name like :query ");
-
-		if($getSearial)
-		{
-			$db->bind("query",$getSearial['serial']);
-			$data = $db->query("select * from radio_events as re INNER  JOIN  events as ev on re.event_id = ev.id where re.radio_unit_serial like :query");
-			return $data;
-		}
-		else{
-		}
+		return null;
 	}
-	else{
+	else
+	{
 		return $data;
 	}
 }
