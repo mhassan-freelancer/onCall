@@ -31,7 +31,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     $db->bind("password",$hash );
     $db->query("update user set password =:password where email = :email");
 
-    require __DIR__.PHP_MAILER;
+    require __DIR__."/../".PHP_MAILER;
     $mail = new PHPMailer;
     $mail->isSMTP();
     //$mail->SMTPDebug = 2;
