@@ -26,17 +26,17 @@ require 'includes/functions.php';
 
           <div class="col-lg-3 col-xs-6">
               <?php
-              $totalUnits = getTotalUnits();
+              $totalUnits = getTotalUnitsCount();
               ?>
               <!-- small box -->
-              <div class="small-box bg-blue">
+              <div class="small-box bg-green">
                   <div class="inner">
                       <h3><?php echo $totalUnits ?></h3>
 
                       <p>Total Systems</p>
                   </div>
                   <div class="icon">
-                      <i class="ion ion-gear-a"></i>
+                      <i class="ion ion-android-list"></i>
                   </div>
                   <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
               </div>
@@ -44,7 +44,7 @@ require 'includes/functions.php';
 
           <div class="col-lg-3 col-xs-6">
             <?php
-                $criticalSystems = getCriticalUnits();
+                $criticalSystems = getCriticalUnitsCount();
             ?>
           <!-- small box -->
           <div class="small-box bg-aqua">
@@ -60,26 +60,27 @@ require 'includes/functions.php';
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>53</h3>
-
-              <p>Systems Registered</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-android-list"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
+<!--        <div class="col-lg-3 col-xs-6">-->
+<!--          <div class="small-box bg-green">-->
+<!--            <div class="inner">-->
+<!--              <h3>53</h3>-->
+<!--              <p>Systems Registered</p>-->
+<!--            </div>-->
+<!--            <div class="icon">-->
+<!--              <i class="ion ion-android-list"></i>-->
+<!--            </div>-->
+<!--            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
+<!--          </div>-->
+<!--        </div>-->
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
+            <?php
+            $openTickets = getOpenTicketsCount();
+            ?>
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3><?php echo $openTickets ?></h3>
 
               <p>Open Tickets</p>
             </div>
@@ -99,9 +100,6 @@ require 'includes/functions.php';
       <!-- /.row (main row) -->
 
     </section>
-
-      
-
       <div class="container-fluid">
       <div class="row">
       <div class="col-xs-12">
@@ -115,7 +113,6 @@ require 'includes/functions.php';
                 <thead>
                 <tr>
                   <th>System ID</th>
-                  <th>Days Down</th>
                   <th>Ticket Open</th>
                   <th>Last Alert</th>
                   
@@ -124,157 +121,117 @@ require 'includes/functions.php';
                 <tbody>
                 <tr>
                   <td>2593 Giardano</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>2813 Herron</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>4160 Bertot</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>3423 Alferdo Gilbert</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>2593 Giardano</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>2813 Herron</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>4160 Bertot</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>3423 Alferdo Gilbert</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr> <tr>
                   <td>2593 Giardano</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>2813 Herron</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>4160 Bertot</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>3423 Alferdo Gilbert</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr> <tr>
                   <td>2593 Giardano</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>2813 Herron</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>4160 Bertot</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>3423 Alferdo Gilbert</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr> <tr>
                   <td>2593 Giardano</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>2813 Herron</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>4160 Bertot</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   
                 </tr>
                  <tr>
                   <td>3423 Alferdo Gilbert</td>
-                  <td>8
-                  </td>
                   <td>2570075</td>
                   <td> 04/18/2016</td>
                   

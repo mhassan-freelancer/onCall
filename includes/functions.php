@@ -531,7 +531,7 @@ function generateStrongPassword($length = 9, $add_dashes = false, $available_set
 	$dash_str .= $password;
 	return $dash_str;
 }
-function getTotalUnits()
+function getTotalUnitsCount()
 {
 	$db = new DB();
 	$totalUnits = $db->single("select count(*) as 'criticalUnits' from radio_units");
@@ -542,10 +542,16 @@ function getUnits()
 	$db = new DB();
 	return $db->query("select * from radio_units");
 }
-function getCriticalUnits()
+function getCriticalUnitsCount()
 {
 	$db = new DB();
 	$criticalUnits = $db->single("select count(*) as 'criticalUnits' from radio_units Where critical = 1");
+	return $criticalUnits;
+}
+function getOpenTicketsCount()
+{
+	$db = new DB();
+	$criticalUnits = $db->single("SELECT COUNT(*) FROM radio_events WHERE repairshpr_ticket_status != 'Resolved'");
 	return $criticalUnits;
 }
 function getEventLists()
