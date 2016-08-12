@@ -38,7 +38,7 @@ require 'includes/functions.php';
                   <div class="icon">
                       <i class="ion ion-android-list"></i>
                   </div>
-                  <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                  <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
               </div>
           </div>
 
@@ -56,7 +56,7 @@ require 'includes/functions.php';
             <div class="icon">
               <i class="ion ion-gear-a"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
           </div>
         </div>
         <!-- ./col -->
@@ -87,7 +87,7 @@ require 'includes/functions.php';
             <div class="icon">
               <i class="ion ion-android-open"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
           </div>
         </div>
         <!-- ./col -->
@@ -105,137 +105,36 @@ require 'includes/functions.php';
       <div class="col-xs-12">
       <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Critical Systems</h3>
+              <h3 class="box-title">Open Tickets</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
+                
                 <tr>
                   <th>System ID</th>
-                  <th>Ticket Open</th>
-                  <th>Last Alert</th>
+                  <th>Ticket Number</th>
+                    <th>Ticket Status</th>
+                  <th>Last Update</th>
                   
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>2593 Giardano</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>2813 Herron</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>4160 Bertot</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>3423 Alferdo Gilbert</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>2593 Giardano</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>2813 Herron</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>4160 Bertot</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>3423 Alferdo Gilbert</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr> <tr>
-                  <td>2593 Giardano</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>2813 Herron</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>4160 Bertot</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>3423 Alferdo Gilbert</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr> <tr>
-                  <td>2593 Giardano</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>2813 Herron</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>4160 Bertot</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>3423 Alferdo Gilbert</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr> <tr>
-                  <td>2593 Giardano</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>2813 Herron</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>4160 Bertot</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
-                 <tr>
-                  <td>3423 Alferdo Gilbert</td>
-                  <td>2570075</td>
-                  <td> 04/18/2016</td>
-                  
-                </tr>
+                <?php
+                $sdetaisl = (getSystemDetailsIndex());
+                foreach ($sdetaisl as $detail)
+                {
+                    echo '<tr>';
+                    echo '<td><a href="system_details.php?unit='.$detail['radio_unit_serial'].'">'.$detail['unit_name'].'</a></td>';
+                    echo '<td>'.$detail['repairshpr_ticket_number'].'</td>';
+                    echo '<td>'.$detail['repairshpr_ticket_status'].'</td>';
+                    echo '<td>'.$detail['notification_time'].'</td>';
+
+                    echo '</tr>';
+                }
+                ?>
+               
                 </tfoot>
               </table>
             </div>

@@ -16,10 +16,8 @@
                 <span class="sr-only">Toggle navigation</span>
             </a>
 
-            <div class="navbar-custom-menu pull-left">
+            <!-- <div class="navbar-custom-menu pull-left">
                 <ul class="nav navbar-nav ">
-                    <!-- Messages: style can be found in dropdown.less-->
-
                     <li >
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Details
                         </a>
@@ -28,20 +26,12 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"> System Detail
                         </a>
                     </li>
-
-
                     <li >
                         <a href="#" class="" data-toggle="dropdown">
-
                         </a>
                     </li>
-
-
-
-                    <!-- Control Sidebar Toggle Button -->
-
                 </ul>
-            </div>
+            </div> -->
             <div class="navbar-custom-menu pull-right">
                 <ul class="nav navbar-nav ">
                     <!-- Messages: style can be found in dropdown.less-->

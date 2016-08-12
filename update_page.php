@@ -1,9 +1,38 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 include 'session_protect.php';
 include 'role_check_administrator.php';
 include 'header.php';
 include 'header_loggedin.php';
 require __DIR__.'/includes/functions.php';
+$status =  checkDaemonProcess("uplinkManager");
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{
+    if(isset($_POST['uplinkManager']))
+    {
+
+        if($_POST['uplinkManager'] == 1)
+        {
+            controlOncallDaemon("uplinkmgrd", "start");
+        }
+        else
+        {
+           (controlOncallDaemon("uplinkmgrd", "stop"));
+        }
+    }
+    if(isset($_POST['fieldServicesManager']))
+    {
+        if($_POST['fieldServicesManager'] == 1)
+        {
+            controlOncallDaemon("fieldsvcmgrd", "start");
+        }
+        else
+        {
+            controlOncallDaemon("fieldsvcmgrd", "stop");
+        }
+    }
+}
 
 $moduleid = 0;
 if(isset($_GET['moduleid']))
@@ -58,29 +87,57 @@ if(isset($_GET['moduleid']))
               <h3 class="box-title">System Status</h3>
             </div>
         <div class="row" style="font-size: 18px; font-weight: bold;">
+        <form method="post">
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        Uplink Interface:
+                    </label>
+                    <label style="color: green">
+                        <input type='hidden' value='0' name='uplinkManager'>
+                        <?php
+                        $status =  checkDaemonProcess("uplinkManager");
+                        if($status == 1){
+                            echo ' <input class="systemtoggle1" type="checkbox" data-toggle="toggle" name="uplinkManager" value="1" checked="checked">';
 
-        <div class="col-md-4">
-            <div class="checkbox">
-              <label>
-                Uplink Interface:
-              </label>
-              <label style="color: green">
-                <input type="checkbox" data-toggle="toggle">
-                Running
-              </label>
+                            echo "Running";
+                        }
+
+                        else{
+                            echo ' <input class="systemtoggle1" type="checkbox" data-toggle="toggle" name="uplinkManager" value="1">';
+
+                            echo "Stop";}
+                        ?>
+                    </label>
+                </div>
             </div>
-          </div>
-        <div class="col-md-4"> 
-            <div class="checkbox">
-              <label>
-                Automation Daemon: 
-              </label>
-               <label style="color: green">
-                <input type="checkbox" data-toggle="toggle">
-                On
-              </label>
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                        Automation Daemon:
+                    </label>
+                    <label style="color: green">
+                        <input type='hidden' value='0' name='fieldServicesManager'>
+                        <?php
+                        $status =  checkDaemonProcess("fieldServicesManager");
+                        if($status == 1){
+                            echo ' <input class="systemtoggle2" type="checkbox" data-toggle="toggle" name="fieldServicesManager" value="1" checked="checked">';
+                            echo "On";}
+                        else
+                        {
+                            echo ' <input class="systemtoggle2" type="checkbox" data-toggle="toggle" name="fieldServicesManager" value="1">';
+
+                            echo "Off";}
+                        ?>
+                    </label>
+                </div>
             </div>
-          </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+
+
           <div class="col-md-4"></div>
         </div>
       </div>
@@ -390,6 +447,7 @@ if(isset($_GET['moduleid']))
 <!-- AdminLTE for demo purposes -->
 <script>
     $(function () {
+        $('input').on('ifChecked', function(event){ alert(event.type + ' callback'); });
 
         $(".select2").select2().on("change", function(e) {
             if($(".select2").val()>0);
@@ -402,6 +460,18 @@ if(isset($_GET['moduleid']))
             alert("Digits Only");
             return false;
         }
+    });
+    $('.systemtoggle1').on('ifChanged', function (event) { $(event.target).trigger('change');
+
+    });
+
+    $(".systemtoggle1").change(function ()
+    {
+        window.location.href = "update_page.php?uplinkManager="+$(this).val();
+    });
+    $(".systemtoggle2").change(function ()
+    {
+        window.location.href = "update_page.php?fieldServicesManager="+$(this).val();
     });
 
 </script>

@@ -408,6 +408,7 @@ function sendSMTPMail($dbconfig, $subject, $message, $recipient){
 }
 
 
+
 function getUsers()
 {
 	$db = new DB();
@@ -563,6 +564,10 @@ function getSystemDetails()
 {
 	$db = new DB();
 	return $db->query("select * from radio_events as re INNER  JOIN  events as ev on re.event_id = ev.id");
+}
+function getSystemDetailsIndex(){
+	$db = new DB();
+	return $db->query("select * from radio_events as re INNER  JOIN  radio_units as ru on re.radio_unit_serial = ru.serial order by re.id desc  limit 50");
 }
 function getRadioEventBySearialNumber($query, $dateRange)
 {

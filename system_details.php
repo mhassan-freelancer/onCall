@@ -5,6 +5,7 @@ include 'header.php';
 include 'header_loggedin.php';
 require 'includes/functions.php';
 $sdetaisl = null;
+$unit = null;
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $query  = $_POST['query'];
@@ -16,7 +17,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 }
 else
 {
-    $sdetaisl = (getSystemDetails());
+    $unit = $_GET['unit'];
+    if($unit != null || $unit != "") {
+        $sdetaisl = getRadioEventBySearialNumber($unit, "");
+    }
 }
 
 ?>
