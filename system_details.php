@@ -1,11 +1,12 @@
 <?php
 include 'session_protect.php';
-include 'role_check_oncall_user.php';
+include 'role_check_admin.php.php';
 include 'header.php';
 include 'header_loggedin.php';
 require 'includes/functions.php';
 $sdetaisl = null;
 $unit = null;
+$unitname = null;
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $query  = $_POST['query'];
@@ -14,11 +15,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         $sdetaisl = getRadioEventBySearialNumber($query, $dateRange);
     else
         $sdetaisl = (getSystemDetails());
+
+    $unitname = $_POST['query'];
+    $realunitname = getUnitName($unitname);
+    if($realunitname)
+        $unitname = $realunitname;
+
 }
 else
 {
     $unit = $_GET['unit'];
     if($unit != null || $unit != "") {
+        $unitname = $_GET['unit'];
+        $realunitname = getUnitName($unitname);
+        if($realunitname)
+            $unitname = $realunitname;
+
         $sdetaisl = getRadioEventBySearialNumber($unit, "");
     }
 }
@@ -129,7 +141,7 @@ else
       <div class="col-xs-12">
       <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Radio Events</h3>
+              <h3 class="box-title">Radio Events - <?php echo $unitname?> Radio Units</h3>
                <button style="width:60px; margin-left:15px" class="btn btn-danger text-center pull-right">
               Relay 2
             </button>

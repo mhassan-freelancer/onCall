@@ -1,3 +1,6 @@
+<?php
+include __DIR__.'/includes/config.php';
+?>
 <body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
 
@@ -16,22 +19,28 @@
                 <span class="sr-only">Toggle navigation</span>
             </a>
 
-            <!-- <div class="navbar-custom-menu pull-left">
-                <ul class="nav navbar-nav ">
-                    <li >
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Details
-                        </a>
-                    </li>
-                    <li >
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> System Detail
-                        </a>
-                    </li>
-                    <li >
-                        <a href="#" class="" data-toggle="dropdown">
-                        </a>
-                    </li>
-                </ul>
-            </div> -->
+            <div class="navbar-custom-menu pull-left">
+                <?php
+                if($_SESSION['on_call_is_admin'] == 1) {
+                    ?>
+                    <ul class="nav navbar-nav ">
+                        <li>
+                            <a href="<?php echo BASE_URL; ?>>" role="button"> Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo BASE_URL; ?>/system_details.php" role="button"> System Detail
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="" data-toggle="dropdown">
+                            </a>
+                        </li>
+                    </ul>
+                    <?php
+                }
+                ?>
+            </div>
             <div class="navbar-custom-menu pull-right">
                 <ul class="nav navbar-nav ">
                     <!-- Messages: style can be found in dropdown.less-->

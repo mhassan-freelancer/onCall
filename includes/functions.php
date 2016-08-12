@@ -567,7 +567,7 @@ function getSystemDetails()
 }
 function getSystemDetailsIndex(){
 	$db = new DB();
-	return $db->query("select * from radio_events as re INNER  JOIN  radio_units as ru on re.radio_unit_serial = ru.serial order by re.id desc  limit 50");
+	return $db->query("select * from radio_events as re INNER  JOIN  radio_units as ru on re.radio_unit_serial = ru.serial inner join events as ev on ev.id = re.event_id where re.repairshpr_ticket_status  != 'Resolved' order by re.id desc  limit 50");
 }
 function getRadioEventBySearialNumber($query, $dateRange)
 {
@@ -578,7 +578,7 @@ function getRadioEventBySearialNumber($query, $dateRange)
 		$db->bind("query",$query);
 		$db->bind("from", date_format(date_create($dateRange[0]),"Y-m-d"));
 		$db->bind("to", date_format(date_create($dateRange[1]),"Y-m-d"));
-		$sql = "SELECT * FROM radio_events as re INNER JOIN  events as ev on re.event_id = ev.id WHERE re.radio_unit_serial = :query AND re.notification_time BETWEEN :from AND :to ";
+		$sql = "SELECT * FROM radio_events as re INNER JOIN  events as ev on re.event_id = ev.id WHERE re.radio_unit_serial = :query   AND re.notification_time BETWEEN :from AND :to ";
 	} else if ($query != "") {
 		$db->bind("query",$query);
 		$sql = "SELECT * FROM radio_events as re INNER JOIN  events as ev on re.event_id = ev.id WHERE re.radio_unit_serial = :query";
@@ -597,6 +597,17 @@ function getRadioEventBySearialNumber($query, $dateRange)
 	{
 		return $data;
 	}
+}
+function getUnitName($unitname){
+	$db = new DB();
+	$db->bind("unitname",$unitname);
+	$data = $db->row("select * from radio_units where serial = :unitname");
+
+	if($data)
+	{
+		return $data['unit_name'];
+	}
+	return false;
 }
 
 ?>

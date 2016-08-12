@@ -114,6 +114,7 @@ require 'includes/functions.php';
                 
                 <tr>
                   <th>System ID</th>
+                    <th>Event Name</th>
                   <th>Ticket Number</th>
                     <th>Ticket Status</th>
                   <th>Last Update</th>
@@ -127,6 +128,7 @@ require 'includes/functions.php';
                 {
                     echo '<tr>';
                     echo '<td><a href="system_details.php?unit='.$detail['radio_unit_serial'].'">'.$detail['unit_name'].'</a></td>';
+                    echo '<td>'.$detail['text'].'</td>';
                     echo '<td>'.$detail['repairshpr_ticket_number'].'</td>';
                     echo '<td>'.$detail['repairshpr_ticket_status'].'</td>';
                     echo '<td>'.$detail['notification_time'].'</td>';

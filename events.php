@@ -1,12 +1,6 @@
 <?php include 'session_protect.php';
 
-if(isset($_SESSION['on_call_u_id']))
-{
-
-}
-else {
-
-}
+include 'role_check_administrator.php';
 include 'header.php';
 include 'header_loggedin.php';
 ?>

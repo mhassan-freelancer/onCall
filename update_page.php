@@ -1,12 +1,9 @@
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+<?php 
 include 'session_protect.php';
 include 'role_check_administrator.php';
 include 'header.php';
 include 'header_loggedin.php';
 require __DIR__.'/includes/functions.php';
-$status =  checkDaemonProcess("uplinkManager");
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     if(isset($_POST['uplinkManager']))
