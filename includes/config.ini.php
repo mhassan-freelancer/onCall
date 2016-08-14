@@ -2,8 +2,8 @@
 [SQL]
 host = localhost
 user = root
-password = ""
+password = "root"
 dbname = oncall
-baseUrl ="http://localhost/onCall/"
+baseUrl ="http://localhost/"
 basePath=""
-phpMailer= "/onCall/vendor/phpmailer/phpmailer/PHPMailerAutoload.php"
+phpMailer= "/vendor/phpmailer/phpmailer/PHPMailerAutoload.php"

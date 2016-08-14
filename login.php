@@ -1,12 +1,13 @@
 <?php session_start();
 include 'header.php';
 ?>
+
 <body class="hold-transition skin-green sidebar-mini">
 <div class="container">
 <div class="row loginform" >
     <div class="col-md-3"></div>
     <div class=" col-md-6">
-                <div class="box-header with-border  text-center">
+                <div class="box-header  text-center">
                   <h3 class="box-title">A &amp; A Power :: OnCall Login</h3>
                 </div>
                 <!-- /.box-header -->

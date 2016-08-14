@@ -1,7 +1,7 @@
 <?php
 require 'includes/config.php';
 ?>
-<li><a href="<?php echo BASE_URL ?>"><i class="fa fa-circle-o text-red"></i> <span>Home</span></a></li>
+<li><a href="<?php echo BASE_URL ?>"><i class="fa fa-home text-red"></i> <span>Home</span></a></li>
 <?php
 if($_SESSION['on_call_is_super_admin'] == 1)
 {
@@ -18,8 +18,8 @@ if($_SESSION['on_call_is_super_admin'] == 1)
 else if ($_SESSION['on_call_is_admin'] == 1)
 {
     ?>
-    <li><a href="system_users.php"><i class="fa fa-circle-o text-yellow"></i> <span>User Manager</span></a></li>
-    <li><a href="system_details.php"><i class="fa fa-circle-o text-red"></i> <span>Alarm</span></a></li>
+    <li><a href="system_users.php"><i class="fa fa-user text-yellow"></i> <span>User Manager</span></a></li>
+    <li><a href="system_details.php"><i class="fa fa-bell text-red"></i> <span>Alarm</span></a></li>
 <!--    <li><a href="account_settings.php"><i class="fa fa-circle-o text-yellow"></i> <span>My Account</span></a></li>-->
 
     <?php
@@ -31,4 +31,4 @@ else if ($_SESSION['on_call_is_oncall'] == 1)
 <!--    <li><a href="account_settings.php"><i class="fa fa-circle-o text-yellow"></i> <span>My Account</span></a></li>-->
     <?php
 }?>
-<li><a href="account_settings.php"><i class="fa fa-circle-o text-yellow"></i> <span>My Account</span></a></li>
+<li><a href="account_settings.php"><i class="fa fa-list text-yellow"></i> <span>My Account</span></a></li>

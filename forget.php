@@ -31,7 +31,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     $db->bind("password",$hash );
     $db->query("update user set password =:password where email = :email");
 
-    require __DIR__."/../".PHP_MAILER;
+    require __DIR__.PHP_MAILER;
     $mail = new PHPMailer;
     $mail->isSMTP();
     //$mail->SMTPDebug = 2;
@@ -78,8 +78,8 @@ if($_SERVER['REQUEST_METHOD']=="POST")
 <div class="row loginform" >
     <div class="col-md-3"></div>
     <div class=" col-md-6">
-                <div class="box-header with-border  text-center">
-                  <h3 class="box-title">A &amp; A Power :: OnCall Password Recovery</h3>
+                <div class="box-header  text-center">
+                  <h3 class="box-title">OnCall Password Recovery</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
