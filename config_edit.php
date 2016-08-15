@@ -4,7 +4,7 @@ include 'role_check_administrator.php';
 include 'header.php';
 include 'header_loggedin.php';
 require 'includes/functions.php';
-
+ 
 $configId= 0;
 if(isset($_GET['id']))
 {

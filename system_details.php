@@ -233,7 +233,7 @@ else
 
           table.draw();
       });
-  });
+  }); 
 </script> 
 
 <!-- Select2 --> 

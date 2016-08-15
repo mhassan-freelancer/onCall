@@ -1,4 +1,4 @@
-<?php 
+<?php  
 include 'session_protect.php';
 include 'role_check_admin.php';
 include 'header.php';

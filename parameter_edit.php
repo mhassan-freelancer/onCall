@@ -7,7 +7,7 @@ require 'includes/functions.php';
 
 $parameterId= 0;
 if(isset($_GET['id']))
-{
+{ 
     $parameterId = $_GET['id'];
 }
 require 'vendor/autoload.php';

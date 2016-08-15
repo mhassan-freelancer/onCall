@@ -92,7 +92,7 @@ if(isset($_SESSION['on_call_u_id']))
               <div class="form-group">
                 <label for="lastname">Last Name</label>
                 <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $userinfo['last_name'] ?>">
-              </div>
+              </div> 
             </div>
           </div>
           <div class="row">

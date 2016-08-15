@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     ?>
       <script>alert("Invalid Email");</script>
 <?php
-  }
+  } 
 
   require 'includes/PasswordStorage.php';
   require ('includes/functions.php');

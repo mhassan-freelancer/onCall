@@ -1,4 +1,4 @@
-<?php
+<?php  
 include 'session_protect.php';
 include 'header.php';
 include 'header_loggedin.php';

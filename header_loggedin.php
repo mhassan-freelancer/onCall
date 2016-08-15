@@ -1,4 +1,4 @@
-<?php
+<?php 
 include __DIR__.'/includes/config.php';
 ?>
 <body class="hold-transition skin-green sidebar-mini">

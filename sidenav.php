@@ -2,7 +2,7 @@
 require 'includes/config.php';
 ?>
 <li><a href="<?php echo BASE_URL ?>"><i class="fa fa-home text-red"></i> <span>Home</span></a></li>
-<?php
+<?php 
 if($_SESSION['on_call_is_super_admin'] == 1)
 {
     ?>

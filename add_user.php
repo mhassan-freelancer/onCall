@@ -66,7 +66,7 @@ Add Users
 
     <!-- Main content -->
     <section class="content">
-        <div class="row">
+        <div class="row"> 
             <!-- left column -->
             <div class="col-md-12">
                 <!-- general form elements -->

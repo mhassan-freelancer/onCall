@@ -3,7 +3,7 @@ include 'role_check_administrator.php';
 include 'header.php';
 include 'header_loggedin.php';
 require 'includes/functions.php';
-?>
+?> 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <?php

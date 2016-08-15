@@ -2,7 +2,7 @@
 include 'role_check_administrator.php';
 include 'header.php';
 include 'header_loggedin.php';
-?>
+?> 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
