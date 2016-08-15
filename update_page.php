@@ -1,6 +1,6 @@
 <?php   
 include 'session_protect.php';
-include 'role_check_administrator.php';
+include 'role_check_admin.php';
 include 'header.php';
 include 'header_loggedin.php';
 require __DIR__.'/includes/functions.php';
@@ -78,66 +78,70 @@ if(isset($_GET['moduleid']))
       
 
       <div class="container-fluid">
+      <?php
+      if($_SESSION['on_call_is_super_admin'] == 1) {
+          ?>
+          <div class="box box-success mt-50">
+              <div class="box-header">
+                  <h3 class="box-title">System Status</h3>
+              </div>
+              <div class="row" style="font-size: 18px; font-weight: bold;">
+                  <form method="post">
+                      <div class="col-md-4">
+                          <div class="checkbox">
+                              <label>
+                                  Uplink Interface:
+                              </label>
+                              <label style="color: green">
+                                  <input type='hidden' value='0' name='uplinkManager'>
+                                  <?php
+                                  $status = checkDaemonProcess("uplinkManager");
+                                  if ($status == 1) {
+                                      echo ' <input class="systemtoggle1" type="checkbox" data-toggle="toggle" name="uplinkManager" value="1" checked="checked">';
 
-      <div class="box box-success mt-50">
-            <div class="box-header">
-              <h3 class="box-title">System Status</h3>
-            </div>
-        <div class="row" style="font-size: 18px; font-weight: bold;">
-        <form method="post">
-            <div class="col-md-4">
-                <div class="checkbox">
-                    <label>
-                        Uplink Interface:
-                    </label>
-                    <label style="color: green">
-                        <input type='hidden' value='0' name='uplinkManager'>
-                        <?php
-                        $status =  checkDaemonProcess("uplinkManager");
-                        if($status == 1){
-                            echo ' <input class="systemtoggle1" type="checkbox" data-toggle="toggle" name="uplinkManager" value="1" checked="checked">';
+                                      echo "Running";
+                                  } else {
+                                      echo ' <input class="systemtoggle1" type="checkbox" data-toggle="toggle" name="uplinkManager" value="1">';
 
-                            echo "Running";
-                        }
+                                      echo "Stop";
+                                  }
+                                  ?>
+                              </label>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="checkbox">
+                              <label>
+                                  Automation Daemon:
+                              </label>
+                              <label style="color: green">
+                                  <input type='hidden' value='0' name='fieldServicesManager'>
+                                  <?php
+                                  $status = checkDaemonProcess("fieldServicesManager");
+                                  if ($status == 1) {
+                                      echo ' <input class="systemtoggle2" type="checkbox" data-toggle="toggle" name="fieldServicesManager" value="1" checked="checked">';
+                                      echo "On";
+                                  } else {
+                                      echo ' <input class="systemtoggle2" type="checkbox" data-toggle="toggle" name="fieldServicesManager" value="1">';
 
-                        else{
-                            echo ' <input class="systemtoggle1" type="checkbox" data-toggle="toggle" name="uplinkManager" value="1">';
-
-                            echo "Stop";}
-                        ?>
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="checkbox">
-                    <label>
-                        Automation Daemon:
-                    </label>
-                    <label style="color: green">
-                        <input type='hidden' value='0' name='fieldServicesManager'>
-                        <?php
-                        $status =  checkDaemonProcess("fieldServicesManager");
-                        if($status == 1){
-                            echo ' <input class="systemtoggle2" type="checkbox" data-toggle="toggle" name="fieldServicesManager" value="1" checked="checked">';
-                            echo "On";}
-                        else
-                        {
-                            echo ' <input class="systemtoggle2" type="checkbox" data-toggle="toggle" name="fieldServicesManager" value="1">';
-
-                            echo "Off";}
-                        ?>
-                    </label>
-                </div>
-            </div>
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Update</button>
-            </div>
-        </form>
+                                      echo "Off";
+                                  }
+                                  ?>
+                              </label>
+                          </div>
+                      </div>
+                      <div class="box-footer">
+                          <button type="submit" class="btn btn-primary">Update</button>
+                      </div>
+                  </form>
 
 
-          <div class="col-md-4"></div>
-        </div>
-      </div>
+                  <div class="col-md-4"></div>
+              </div>
+          </div>
+          <?php
+      }
+      ?>
 
       <div class="box box-success" style="margin-top:25px">
             <div class="box-header">
@@ -147,27 +151,31 @@ if(isset($_GET['moduleid']))
 
 
         <div class="col-md-12">
-                 <div class="form-group" style="margin-left: 15px; font-weight:normal !important; width: 300px">
-                <label>Module</label>
-                     <?php
-                     $modules = getModules();
-                     ?>
-                     <select name="module" class="form-control select2" style="width: 100%;">
+            <?php
+            if($_SESSION['on_call_is_super_admin'] == 1) {
+                ?>
+                <div class="form-group" style="margin-left: 15px; font-weight:normal !important; width: 300px">
+                    <label>Module</label>
+                    <?php
+                    $modules = getModules();
+                    ?>
+                    <select name="module" class="form-control select2" style="width: 100%;">
 
-                         <option value="0">Please select the module</option>
-                         <?php
-                         foreach ($modules as $module)
-                         {
-                             if($module['id']== $moduleid)
-                             echo '<option selected="selected" value="'.$module['id'].'">'.$module['name'].'</option>';
-                             else
-                             echo '<option  value="'.$module['id'].'">'.$module['name'].'</option>';
+                        <option value="0">Please select the module</option>
+                        <?php
+                        foreach ($modules as $module) {
+                            if ($module['id'] == $moduleid)
+                                echo '<option selected="selected" value="' . $module['id'] . '">' . $module['name'] . '</option>';
+                            else
+                                echo '<option  value="' . $module['id'] . '">' . $module['name'] . '</option>';
 
-                         }
-                     ?>
-                     </select>
-
-              </div>
+                        }
+                        ?>
+                    </select>
+                </div>
+                <?php
+            }
+            ?>
             <div class="col-md-12">
                 <form method="post" action="bll/update_page.php">
                     <input type="hidden" name="moduleid" value="<?php echo $moduleid ?>" >

@@ -25,7 +25,7 @@ include __DIR__.'/includes/config.php';
                     ?>
                     <ul class="nav navbar-nav ">
                         <li>
-                            <a href="<?php echo BASE_URL; ?>>" role="button"> Dashboard
+                            <a href="<?php echo BASE_URL; ?>" role="button"> Dashboard
                             </a>
                         </li>
                         <li>

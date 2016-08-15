@@ -31,18 +31,24 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     $db->bind("password",$hash );
     $db->query("update user set password =:password where email = :email");
 
+    $host = getConfigParameter2("ONCALL", "SENDER_SMTP_HOST");
+    $port = getConfigParameter2("ONCALL", "SENDER_SMTP_PORT");
+    $username = getConfigParameter2("ONCALL", "SENDER_USER");
+    $password = getConfigParameter2("ONCALL", "SENDER_PASS");
+
+
     require __DIR__.PHP_MAILER;
     $mail = new PHPMailer;
     $mail->isSMTP();
     //$mail->SMTPDebug = 2;
     // $mail->Debugoutput = 'html';
-    $mail->Host = 'smtp.gmail.com';
-    $mail->Port = 587;
+    $mail->Host = $host;
+    $mail->Port = $port;
     $mail->SMTPSecure = 'tls';
     $mail->SMTPAuth = true;
-    $mail->Username = "asimoncall@gmail.com";
-    $mail->Password = "asim12345";
-    $mail->setFrom('asimizb@gmail.com', 'OnCall Support');
+    $mail->Username = $username; //"asimoncall@gmail.com";
+    $mail->Password = $password; //"asim12345";
+    $mail->setFrom($username, 'OnCall Support');
     $mail->addAddress($recoveryEmail, $person['first_name']." ".$person['last_name']);
     $mail->Subject = 'OnCall Password Recover';
     $mail->msgHTML("Your new Password is ".$password);

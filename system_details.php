@@ -1,6 +1,6 @@
 <?php
 include 'session_protect.php';
-include 'role_check_admin.php.php';
+include 'role_check_admin.php';
 include 'header.php';
 include 'header_loggedin.php';
 require 'includes/functions.php';
@@ -50,9 +50,6 @@ else
         <form method="post">
           <div class="form-group">
             <label>Search</label>
-            <?php
-                    $units = getUnits();
-                    ?>
             <?php
                     $units = getUnits();
                     ?>
@@ -110,7 +107,7 @@ else
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">Radio Events - <?php echo $unitname?> Radio Units</h3>
+            <h3 class="box-title">Radio Events - <?php echo $unitname?></h3>
             <button class="btn btn-danger text-center pull-right" style="margin-top: 5px;margin-right: 10px;"> Relay 2 </button>
             <button class="btn btn-warning pull-right text-center" style="margin-right: 15px; margin-top: 5px;"> Relay 1 </button>
           </div>
@@ -123,11 +120,11 @@ else
             <table id="example1" class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>Event ID</th>
-                  <th>Event</th>
-                  <th>Ticket Open</th>
-                  <th>Date</th>
-                  <th>Ticket Status</th>
+                    <th>Date</th>
+                    <th>Event ID</th>
+                    <th>Event</th>
+                    <th>Ticket Open</th>
+                    <th>Ticket Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -137,10 +134,10 @@ else
                     foreach ($sdetaisl as $detail)
                     {
                         echo '<tr>';
+                        echo '<td>'.$detail['notification_time'].'</td>';
                         echo '<td>'.$detail['event_id'].'</td>';
                         echo '<td>'.$detail['text'].'</td>';
                         echo '<td>'.$detail['repairshpr_ticket_number'].'</td>';
-                        echo '<td>'.$detail['notification_time'].'</td>';
                         echo '<td>'.$detail['repairshpr_ticket_status'].'</td>';
                         echo '</tr>';
                     }
@@ -224,7 +221,10 @@ else
           table.draw();
       } );
       var selected = new Array();
-
+      selected = new Array();
+      $(".eventcheckbox:checked").each(function(){
+          selected.push($(this).val());
+      });
       $(".eventcheckbox").change(function() {
           selected = new Array();
           $(".eventcheckbox:checked").each(function(){
@@ -257,7 +257,10 @@ else
     //Initialize Select2 Elements
     $(".select2").select2();
     //Date range picker
-    $('#date-range').daterangepicker();
+    $('#date-range').daterangepicker({
+        startDate: moment().subtract(1, 'month'),
+        endDate: moment()
+    });
   });
 </script>
 </body>

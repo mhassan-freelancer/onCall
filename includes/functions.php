@@ -357,19 +357,14 @@ function updateSystemTicketStatus($dbconfig, $ticket_id, $repair_shpr_ticket_sta
 function sendSMTPMail($dbconfig, $subject, $message, $recipient){
 //	require_once 'Mail.php';
 //	require_once 'Mail/mime.php';
-
-
 	require_once('phpmailer/vendor/autoload.php');
 
-	$host = getConfigParameter($dbconfig, "ONCALL", "SENDER_SMTP_HOST");
-	$port = getConfigParameter($dbconfig, "ONCALL", "SENDER_SMTP_PORT");
-	$username = getConfigParameter($dbconfig, "ONCALL", "SENDER_USER");
-	$password = getConfigParameter($dbconfig, "ONCALL", "SENDER_PASS");
-
-
+	$host = getConfigParameter2("ONCALL", "SENDER_SMTP_HOST");
+	$port = getConfigParameter2("ONCALL", "SENDER_SMTP_PORT");
+	$username = getConfigParameter2("ONCALL", "SENDER_USER");
+	$password = getConfigParameter2("ONCALL", "SENDER_PASS");
 
 	$mail = new PHPMailer;
-
 	$mail->isSMTP();                                      // Set mailer to use SMTP
 	$mail->Host = $host;		                       	  // Specify main and backup server
 	$mail->SMTPAuth = true;                               // Enable SMTP authentication
@@ -608,6 +603,22 @@ function getUnitName($unitname){
 		return $data['unit_name'];
 	}
 	return false;
+}
+
+function getConfigParameter2($module, $param){
+	$db = new DB();
+	$db->bind("param",$param);
+	$db->bind("module",$module);
+	$result = $db->row("SELECT c.module_id, c.`value` FROM config c
+		INNER JOIN modules m ON m.id = c.module_id
+		INNER JOIN parameters p ON p.parameter_id = c.parameter_id
+		WHERE m.`name` = :module AND p.parameter = :param");
+
+	if($result)
+	{
+		return $result['value'];
+	}
+	return '';
 }
 
 ?>

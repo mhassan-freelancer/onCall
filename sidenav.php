@@ -20,6 +20,7 @@ else if ($_SESSION['on_call_is_admin'] == 1)
     ?>
     <li><a href="system_users.php"><i class="fa fa-user text-yellow"></i> <span>User Manager</span></a></li>
     <li><a href="system_details.php"><i class="fa fa-bell text-red"></i> <span>Alarm</span></a></li>
+    <li><a href="update_page.php?moduleid=2"><i class="fa fa-circle-o text-yellow"></i> <span>Settings</span></a></li>
 <!--    <li><a href="account_settings.php"><i class="fa fa-circle-o text-yellow"></i> <span>My Account</span></a></li>-->
 
     <?php
