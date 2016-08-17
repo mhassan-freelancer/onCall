@@ -273,9 +273,6 @@ if(isset($_GET['moduleid']))
   <div class="control-sidebar-bg"></div>
 </div>
 
-
-
-
 <!-- ./wrapper -->
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
