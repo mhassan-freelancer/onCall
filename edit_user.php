@@ -30,7 +30,8 @@ if(isset($_SESSION['on_call_u_id']))
 else {
     //header("location:/login.php?error=loginrequired");
 }
-include __DIR__.'/header.php';
+include '/header.php';
+include 'header_scripts.php';
 include __DIR__.'/header_loggedin.php';
 require __DIR__.'/includes/functions.php';
 ?>

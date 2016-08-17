@@ -2,6 +2,7 @@
 include 'session_protect.php';
 include 'role_check_administrator.php';
 include 'header.php';
+include 'header_scripts.php';
 include 'header_loggedin.php';
 require 'includes/functions.php';
 ?> 
